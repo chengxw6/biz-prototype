@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的证书 - 业务下单系统</title>
-    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
     <div class="app-container">
         <aside class="sidebar">
             <div class="sidebar-header">业务下单系统</div>
             <ul class="sidebar-nav">
-                <li><a href="../orders/products.html">申请新证书</a></li>
-                <li><a href="../orders/list.html">我的订单</a></li>
-                <li><a href="list.html">我的证书</a></li>
+                <li><a href="/orders/products.html">申请新证书</a></li>
+                <li><a href="/orders/list.html">我的订单</a></li>
+                <li><a href="/certificate/list.html">我的证书</a></li>
             </ul>
         </aside>
 
@@ -29,8 +29,8 @@
                         <a href="#" class="dropdown-item">✓ 个人账户: Cheng Xiuwen</a>
                         <a href="#" class="dropdown-item">机构账户: GDCA Co., Ltd.</a>
                         <div class="dropdown-divider"></div>
-                        <a href="../account/profile.html" class="dropdown-item">账户信息修改</a>
-                        <a href="../account/login.html" class="dropdown-item">退出登录</a>
+                        <a href="/account/profile.html" class="dropdown-item">账户信息修改</a>
+                        <a href="/account/login.html" class="dropdown-item">退出登录</a>
                     </div>
                 </div>
             </header>
@@ -41,26 +41,18 @@
             <div class="card">
                 <div class="card-header">证书申请列表</div>
                 <div class="card-body">
-                    <div class="filter-bar">
-                        <div class="filter-group"><label>关键字</label><input type="text" placeholder="申请/序列/登记人参考编号"></div>
-                        <div class="filter-group"><label>状态</label><select><option>全部</option><option>有效</option><option>已撤销</option><option>已过期</option></select></div>
-                        <div class="filter-group"><label>有效期区间</label><input type="date"></div>
-                        <button class="btn btn-primary">搜索</button>
-                    </div>
                     <table>
                         <thead>
                             <tr><th>申请编号</th><th>证书类型</th><th>登记人参考编号</th><th>有效期</th><th>状态</th><th>操作</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td><a href="detail.html">APP-PER-00862</a></td><td>電子證書（個人）</td><td>250101-123456</td><td>2024-08-01 - 2025-07-31</td><td><span class="status-badge status-paid">有效</span></td><td><a href="detail.html">详情</a> | <a href="#">撤销</a> | <a href="#">续期</a></td></tr>
-                            <tr><td><a href="detail.html">APP-ORG-00551</a></td><td>電子證書（機構）</td><td>250315-654321</td><td>2025-01-20 - 2026-01-19</td><td><span class="status-badge status-paid">有效</span></td><td><a href="detail.html">详情</a> | <a href="#">撤销</a> | <a href="#">续期</a></td></tr>
-                            <tr><td><a href="detail.html">APP-SSL-00120</a></td><td>電子證書（伺服器）DV</td><td>250601-112233</td><td>2023-07-10 - 2024-07-09</td><td><span class="status-badge status-cancelled">已过期</span></td><td><a href="detail.html">详情</a></td></tr>
+                            <tr><td><a href="/certificate/detail.html">APP-PER-00862</a></td><td>電子證書（個人）</td><td>250101-123456</td><td>2024-08-01 - 2025-07-31</td><td><span class="status-badge status-paid">有效</span></td><td><a href="/certificate/detail.html">详情</a> | <a href="#">撤销</a> | <a href="#">续期</a></td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </main>
     </div>
-    <script src="../assets/main.js"></script>
+    <script src="/assets/main.js"></script>
 </body>
 </html>

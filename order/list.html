@@ -4,65 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的订单 - 业务下单系统</title>
-    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
     <div class="app-container">
         <aside class="sidebar">
             <div class="sidebar-header">业务下单系统</div>
             <ul class="sidebar-nav">
-                <li><a href="../index.html">用户中心</a></li>
-                <li><a href="products.html">申请新证书</a></li>
-                <li><a href="list.html">我的订单</a></li>
-                <li><a href="../certificate/list.html">我的证书</a></li>
+                <li><a href="/orders/products.html">申请新证书</a></li>
+                <li><a href="/orders/list.html">我的订单</a></li>
+                <li><a href="/certificate/list.html">我的证书</a></li>
             </ul>
         </aside>
 
         <main class="main-content">
+            <header class="header">
+                <div class="user-menu">
+                    <button class="user-menu-button" id="userMenuButton">
+                        <span>个人账户: Cheng Xiuwen</span>
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="user-menu-dropdown" id="userMenuDropdown">
+                        <div class="dropdown-header">切换账户</div>
+                        <a href="#" class="dropdown-item">✓ 个人账户: Cheng Xiuwen</a>
+                        <a href="#" class="dropdown-item">机构账户: GDCA Co., Ltd.</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="/account/profile.html" class="dropdown-item">账户信息修改</a>
+                        <a href="/account/login.html" class="dropdown-item">退出登录</a>
+                    </div>
+                </div>
+            </header>
+            
             <div class="page-header">
                 <h1>我的订单</h1>
             </div>
             <div class="card">
                 <div class="card-header">订单列表</div>
                 <div class="card-body">
-                    <div class="filter-bar">
-                        <div class="filter-group"><label>订单号</label><input type="text"></div>
-                        <div class="filter-group"><label>机构/经办人/申请人名称</label><input type="text"></div>
-                        <div class="filter-group"><label>支付状态</label><select><option>全部</option><option>待支付</option><option>已支付</option></select></div>
-                        <button class="btn btn-primary">搜索</button>
-                    </div>
-                    <table>
+                     <table>
                         <thead>
                             <tr><th>订单号</th><th>证书申请明细</th><th>订单金额</th><th>支付状态</th><th>操作</th></tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><a href="#">ORD20250715001</a></td>
-                                <td>APP-EVSSL-001: 電子證書（伺服器）<br><small class="text-muted">申请人: GDCA Tech Dept.</small></td>
-                                <td>HK$ 5,000.00</td>
-                                <td><span class="status-badge status-paid">已支付</span></td>
-                                <td><a href="#">查看详情</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">ORD20250714005</a></td>
-                                <td>APP-PER-001: 電子證書（個人）<br><small class="text-muted">申请人: Cheng Xiuwen</small></td>
-                                <td>HK$ 50.00</td>
-                                <td><span class="status-badge status-pending">待支付</span></td>
-                                <td><a href="#">去支付</a></td>
-                            </tr>
-                             <tr>
-                                <td><a href="#">ORD20250713002</a></td>
-                                <td>APP-ORG-002: 電子證書（機構）<br><small class="text-muted">经办人: Ling Ruochuan</small></td>
-                                <td>HK$ 1,200.00</td>
-                                <td><span class="status-badge status-paid">已支付</span></td>
-                                <td><a href="#">查看详情</a></td>
-                            </tr>
+                            <tr><td><a href="#">ORD20250715001</a></td><td>APP-EVSSL-001: 電子證書（伺服器）</td><td>HK$ 5,000.00</td><td><span class="status-badge status-paid">已支付</span></td><td><a href="#">查看详情</a></td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </main>
     </div>
-    <script src="../assets/main.js"></script>
+    <script src="/assets/main.js"></script>
 </body>
 </html>
