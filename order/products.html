@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>申请新证书 - 业务下单系统</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">业务下单系统</div>
+            <ul class="sidebar-nav">
+                <li><a href="products.html">申请新证书</a></li>
+                <li><a href="list.html">我的订单</a></li>
+                <li><a href="../certificate/list.html">我的证书</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1>选择证书产品</h1>
+            </div>
+            
+            <div class="filter-bar">
+                <div class="account-toggle">
+                    <input type="radio" id="toggle_personal" name="account_type" value="personal" checked>
+                    <label for="toggle_personal">以 个人账户 身份申请</label>
+                    <input type="radio" id="toggle_org" name="account_type" value="org">
+                    <label for="toggle_org">以 机构账户 身份申请</label>
+                </div>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card" data-account-type="personal">
+                    <h3>電子證書（個人）</h3>
+                    <div class="card-body"><p class="price">HK$50/年</p></div>
+                    <div class="card-footer"><button class="btn btn-success btn-block">申请</button></div>
+                </div>
+                <div class="product-card" data-account-type="personal">
+                    <h3>電子證書（個人）互認版</h3>
+                    <div class="card-body"><p class="price">HK$250/年</p></div>
+                    <div class="card-footer"><button class="btn btn-success btn-block">申请</button></div>
+                </div>
+                <div class="product-card" data-account-type="org">
+                    <h3>電子證書（機構）</h3>
+                    <div class="card-body"><p class="price">HK$500/年</p></div>
+                    <div class="card-footer"><button class="btn btn-success btn-block">申请</button></div>
+                </div>
+                 <div class="product-card" data-account-type="org">
+                    <h3>電子證書（機構）互認版</h3>
+                    <div class="card-body"><p class="price">HK$1,200/年</p></div>
+                    <div class="card-footer"><button class="btn btn-success btn-block">申请</button></div>
+                </div>
+                 <div class="product-card" data-account-type="org">
+                    <h3>電子證書（保密）</h3>
+                    <div class="card-body"><p class="price">HK$200/年</p></div>
+                    <div class="card-footer"><button class="btn btn-success btn-block">申请</button></div>
+                </div>
+                <div class="product-card" data-account-type="personal,org">
+                    <h3>電子證書（伺服器）</h3>
+                    <div class="card-body"><p class="price">HK$2,000/年</p></div>
+                    <div class="card-footer"><button class="btn btn-success btn-block">申请</button></div>
+                </div>
+                 <div class="product-card" data-account-type="org">
+                    <h3>延伸認證電子證書（伺服器）</h3>
+                    <div class="card-body"><p class="price">HK$5,000/年</p></div>
+                    <div class="card-footer"><button class="btn btn-success btn-block">申请</button></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../assets/main.js"></script>
+</body>
+</html>

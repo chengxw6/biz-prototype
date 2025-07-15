@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册 - 业务下单系统</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <div class="standalone-container">
+        <div class="card" style="max-width: 900px; width: 100%;">
+            <div class="card-header">
+                <h1 style="font-size: 20px; text-align:center; margin: 0;">创建您的账户</h1>
+            </div>
+            <div class="card-body">
+                <div class="tabs">
+                    <button class="tab-button active" onclick="showTab(this, 'personal')">个人账户注册</button>
+                    <button class="tab-button" onclick="showTab(this, 'organization')">机构账户注册</button>
+                </div>
+
+                <div id="personal-form" class="tab-content active">
+                    <form class="form-grid" action="pending-review.html">
+                        <fieldset class="full-width">
+                            <legend>个人信息</legend>
+                            <div class="form-grid">
+                                <div class="form-group"><label>申请人英文姓名<span class="required">*</span></label><input type="text" required></div>
+                                <div class="form-group"><label>申请人中文姓名<span class="required">*</span></label><input type="text" required></div>
+                                <div class="form-group"><label>申请人称谓<span class="required">*</span></label><select required><option>先生</option><option>女士</option></select></div>
+                                <div class="form-group"><label>申请人出生日期</label><input type="date"></div>
+                                <div class="form-group"><label>香港身份证/证件号码<span class="required">*</span></label><input type="text" required></div>
+                                <div class="form-group"><label>流动电话号码<span class="required">*</span></label><input type="text" required></div>
+                                <div class="form-group"><label>电邮地址<span class="required">*</span></label><input type="email" required></div>
+                                <div class="form-group"><label>职衔</label><input type="text"></div>
+                                <div class="form-group"><label>办公室号码</label><input type="text"></div>
+                                <div class="form-group"><label>传真号码</label><input type="text"></div>
+                                <div class="form-group full-width"><label>身份证明文件<span class="required">*</span></label><input type="file" required></div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="full-width">
+                            <legend>登录信息</legend>
+                            <div class="form-grid">
+                                <div class="form-group"><label>登录邮箱<span class="required">*</span></label><input type="email" required></div>
+                                <div class="form-group"></div> <div class="form-group"><label>登录密码<span class="required">*</span></label><input type="password" required></div>
+                                <div class="form-group"><label>确认登录密码<span class="required">*</span></label><input type="password" required></div>
+                            </div>
+                        </fieldset>
+                        <div class="form-group full-width"><button type="submit" class="btn btn-success btn-block">提交注册</button></div>
+                    </form>
+                </div>
+
+                <div id="organization-form" class="tab-content">
+                     <form action="pending-review.html">
+                        <fieldset><legend>机构信息</legend><div class="form-grid">
+                            <div class="form-group"><label>机构英文名称<span class="required">*</span></label><input required></div>
+                            <div class="form-group"><label>机构中文名称<span class="required">*</span></label><input required></div>
+                            <div class="form-group"><label>机构分行/部门英文名称</label><input></div>
+                            <div class="form-group"><label>机构分行/部门中文名称</label><input></div>
+                            <div class="form-group"><label>商业登记证编号(BRN)</label><input></div>
+                            <div class="form-group"><label>公司注册证编号(CI/CR)</label><input></div>
+                            <div class="form-group full-width"><label>其他注册证明文件(Others)</label><input></div>
+                            <div class="form-group full-width"><label>机构地址<span class="required">*</span></label><input required></div>
+                            <div class="form-group full-width"><label>机构证明文件<span class="required">*</span></label><input type="file" required></div>
+                        </div></fieldset>
+                        <fieldset><legend>经办人信息</legend><div class="form-grid">
+                            <div class="form-group"><label>申请人英文姓名<span class="required">*</span></label><input required></div>
+                            <div class="form-group"><label>申请人中文姓名<span class="required">*</span></label><input required></div>
+                            <div class="form-group"><label>申请人称谓<span class="required">*</span></label><select required><option>先生</option><option>女士</option></select></div>
+                            <div class="form-group"><label>香港身份证/证件号码<span class="required">*</span></label><input required></div>
+                            <div class="form-group"><label>流动电话号码<span class="required">*</span></label><input required></div>
+                            <div class="form-group"><label>电邮地址<span class="required">*</span></label><input type="email" required></div>
+                            <div class="form-group"><label>职衔</label><input></div>
+                            <div class="form-group"><label>办公室号码</label><input></div>
+                            <div class="form-group full-width"><label>机构授权文件<span class="required">*</span></label><input type="file" required></div>
+                            <div class="form-group full-width"><label>身份证明文件<span class="required">*</span></label><input type="file" required></div>
+                        </div></fieldset>
+                        <fieldset><legend>技术人员信息</legend><div class="form-grid">
+                           <div class="form-group"><label>技术人员英文姓名</label><input></div>
+                           <div class="form-group"><label>联络电话号码</label><input></div>
+                           <div class="form-group"><label>职衔</label><input></div>
+                           <div class="form-group"><label>电邮地址</label><input type="email"></div>
+                        </div></fieldset>
+                        <fieldset><legend>登录信息</legend><div class="form-grid">
+                            <div class="form-group"><label>登录邮箱<span class="required">*</span></label><input type="email" required></div>
+                            <div class="form-group"></div>
+                            <div class="form-group"><label>登录密码<span class="required">*</span></label><input type="password" required></div>
+                            <div class="form-group"><label>确认登录密码<span class="required">*</span></label><input type="password" required></div>
+                        </div></fieldset>
+                        <button type="submit" class="btn btn-success btn-block">提交注册</button>
+                    </form>
+                </div>
+                 <div style="text-align: center; margin-top: 20px;">
+                    <a href="login.html">已有账号？返回登录</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/main.js"></script>
+</body>
+</html>

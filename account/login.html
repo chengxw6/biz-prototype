@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 业务下单系统</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <div class="standalone-container">
+        <div class="card form-container">
+            <div class="card-body">
+                <h1 style="font-size: 22px; text-align:center; margin-bottom: 25px;">业务下单系统登录</h1>
+                <form action="../index.html">
+                    <div class="form-group">
+                        <label for="email">登录邮箱</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">登录密码</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="captcha">随机码</label>
+                        <div class="captcha-wrapper">
+                            <input type="text" id="captcha" required>
+                            <div class="captcha-img" onclick="refreshCaptcha(this)">B7X2K9</div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <button type="submit" class="btn btn-primary btn-block">登 录</button>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+                        <a href="forgot-password.html">忘记密码?</a>
+                        <a href="register.html">注册新账号</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/main.js"></script>
+</body>
+</html>
