@@ -11,8 +11,8 @@
         <aside class="sidebar">
             <div class="sidebar-header">业务下单系统</div>
             <ul class="sidebar-nav">
-                <li><a href="/orders/products.html">申请新证书</a></li>
-                <li><a href="/orders/list.html">我的订单</a></li>
+                <li><a href="/order/products.html">申请新证书</a></li>
+                <li><a href="/order/list.html">我的订单</a></li>
                 <li><a href="/certificate/list.html">我的证书</a></li>
             </ul>
         </aside>
@@ -41,12 +41,73 @@
             <div class="card">
                 <div class="card-header">订单列表</div>
                 <div class="card-body">
-                     <table>
+                    <table>
                         <thead>
-                            <tr><th>订单号</th><th>证书申请明细</th><th>订单金额</th><th>支付状态</th><th>操作</th></tr>
+                            <tr>
+                                <th>订单号</th>
+                                <th>证书申请明细</th>
+                                <th>订单金额</th>
+                                <th>支付状态</th>
+                                <th>操作</th>
+                            </tr>
                         </thead>
                         <tbody>
-                            <tr><td><a href="#">ORD20250715001</a></td><td>APP-EVSSL-001: 電子證書（伺服器）</td><td>HK$ 5,000.00</td><td><span class="status-badge status-paid">已支付</span></td><td><a href="#">查看详情</a></td></tr>
+                            <!-- 单个订单示例 -->
+                            <tr>
+                                <td><a href="#">ORD20250715001</a></td>
+                                <td>
+                                    <div>
+                                        APP-EVSSL-001: 電子證書（伺服器）
+                                        <button class="btn btn-link toggle-details" data-target="details-1">更多</button>
+                                    </div>
+                                    <div id="details-1" class="details hidden">
+                                        <ul>
+                                            <li>APP-PER-00862: 電子證書（個人）</li>
+                                            <li>APP-ORG-00543: 電子證書（機構）</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>HK$ 5,000.00</td>
+                                <td><span class="status-badge status-paid">已支付</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link dropdown-toggle">查看详情</button>
+                                        <div class="dropdown-menu">
+                                            <a href="#" class="dropdown-item">支付订单</a>
+                                            <a href="#" class="dropdown-item">取消订单</a>
+                                            <a href="#" class="dropdown-item">编辑订单</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- 群体订单示例 -->
+                            <tr>
+                                <td><a href="#">ORD20250715002</a></td>
+                                <td>
+                                    <div>
+                                        APP-ORG-00543: 電子證書（機構）
+                                        <button class="btn btn-link toggle-details" data-target="details-2">更多</button>
+                                    </div>
+                                    <div id="details-2" class="details hidden">
+                                        <ul>
+                                            <li>APP-ORG-00544: 電子證書（機構）互認版</li>
+                                            <li>APP-ORG-00545: 電子證書（保密）</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>HK$ 10,000.00</td>
+                                <td><span class="status-badge status-unpaid">未支付</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link dropdown-toggle">查看详情</button>
+                                        <div class="dropdown-menu">
+                                            <a href="#" class="dropdown-item">支付订单</a>
+                                            <a href="#" class="dropdown-item">取消订单</a>
+                                            <a href="#" class="dropdown-item">编辑订单</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -54,5 +115,30 @@
         </main>
     </div>
     <script src="/assets/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const userMenuButton = document.getElementById('userMenuButton');
+        const userMenuDropdown = document.getElementById('userMenuDropdown');
+        const dropdownItems = userMenuDropdown.querySelectorAll('.dropdown-item');
+
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                // 获取选中的账户信息
+                const selectedAccount = item.textContent.trim();
+                const accountType = selectedAccount.includes('个人账户') ? '个人账户' : '机构账户';
+                const accountName = selectedAccount.split(': ')[1];
+
+                // 更新右上角账户信息
+                userMenuButton.querySelector('span').textContent = `${accountType}: ${accountName}`;
+
+                // 更新勾选状态
+                dropdownItems.forEach(i => i.textContent = i.textContent.replace('✓ ', ''));
+                item.textContent = `✓ ${item.textContent}`;
+            });
+        });
+    });
+</script>
 </body>
 </html>

@@ -18,58 +18,146 @@
         </aside>
 
         <main class="main-content">
+            <header class="header">
+                <div class="user-menu">
+                    <button class="user-menu-button" id="userMenuButton">
+                        <span>个人账户: Cheng Xiuwen</span>
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="user-menu-dropdown" id="userMenuDropdown">
+                        <div class="dropdown-header">切换账户</div>
+                        <a href="#" class="dropdown-item">✓ 个人账户: Cheng Xiuwen</a>
+                        <a href="#" class="dropdown-item">机构账户: GDCA Co., Ltd.</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="../account/profile.html" class="dropdown-item">账户信息修改</a>
+                        <a href="../account/login.html" class="dropdown-item">退出登录</a>
+                    </div>
+                </div>
+            </header>
+
             <div class="page-header">
                 <h1>选择证书产品</h1>
             </div>
-            
-            <div class="filter-bar">
-                <div class="account-toggle">
-                    <input type="radio" id="toggle_personal" name="account_type" value="personal" checked>
-                    <label for="toggle_personal">以 个人账户 身份申请</label>
-                    <input type="radio" id="toggle_org" name="account_type" value="org">
-                    <label for="toggle_org">以 机构账户 身份申请</label>
-                </div>
-            </div>
 
-            <div class="product-grid">
-                <div class="product-card" data-account-type="personal">
+            <div class="product-grid" id="productGrid">
+                <!-- 電子證書（個人） -->
+                <div class="product-card" data-account-type="personal,org">
                     <h3>電子證書（個人）</h3>
                     <div class="card-body"><p class="price">HK$50/年</p></div>
-                    <div class="card-footer"><button class="btn btn-success btn-block">申请</button></div>
+                    <div class="card-footer">
+                        <a href="../certificate/certificate-detail.html?product=電子證書（個人）" class="btn btn-primary btn-sm">申请</a>
+                    </div>
                 </div>
-                <div class="product-card" data-account-type="personal">
+                <!-- 電子證書（個人）互認版 -->
+                <div class="product-card" data-account-type="personal,org">
                     <h3>電子證書（個人）互認版</h3>
                     <div class="card-body"><p class="price">HK$250/年</p></div>
-                    <div class="card-footer"><button class="btn btn-success btn-block">申请</button></div>
+                    <div class="card-footer">
+                        <a href="../certificate/certificate-detail.html?product=電子證書（個人）互認版" class="btn btn-primary btn-sm">申请</a>
+                    </div>
                 </div>
+                <!-- 電子證書（機構） -->
                 <div class="product-card" data-account-type="org">
                     <h3>電子證書（機構）</h3>
                     <div class="card-body"><p class="price">HK$500/年</p></div>
-                    <div class="card-footer"><button class="btn btn-success btn-block">申请</button></div>
+                    <div class="card-footer">
+                        <a href="../certificate/certificate-detail.html?product=電子證書（機構）" class="btn btn-primary btn-sm">申请</a>
+                    </div>
                 </div>
-                 <div class="product-card" data-account-type="org">
+                <!-- 電子證書（機構）互認版 -->
+                <div class="product-card" data-account-type="org">
                     <h3>電子證書（機構）互認版</h3>
                     <div class="card-body"><p class="price">HK$1,200/年</p></div>
-                    <div class="card-footer"><button class="btn btn-success btn-block">申请</button></div>
+                    <div class="card-footer">
+                        <a href="../certificate/certificate-detail.html?product=電子證書（機構）互認版" class="btn btn-primary btn-sm">申请</a>
+                    </div>
                 </div>
-                 <div class="product-card" data-account-type="org">
+                <!-- 電子證書（保密） -->
+                <div class="product-card" data-account-type="org">
                     <h3>電子證書（保密）</h3>
                     <div class="card-body"><p class="price">HK$200/年</p></div>
-                    <div class="card-footer"><button class="btn btn-success btn-block">申请</button></div>
+                    <div class="card-footer">
+                        <a href="../certificate/certificate-detail.html?product=電子證書（保密）" class="btn btn-primary btn-sm">申请</a>
+                    </div>
                 </div>
+                <!-- 電子證書（伺服器） -->
                 <div class="product-card" data-account-type="personal,org">
                     <h3>電子證書（伺服器）</h3>
-                    <div class="card-body"><p class="price">HK$2,000/年</p></div>
-                    <div class="card-footer"><button class="btn btn-success btn-block">申请</button></div>
-                </div>
-                 <div class="product-card" data-account-type="org">
-                    <h3>延伸認證電子證書（伺服器）</h3>
-                    <div class="card-body"><p class="price">HK$5,000/年</p></div>
-                    <div class="card-footer"><button class="btn btn-success btn-block">申请</button></div>
+                    <div class="card-body">
+                        <ul>
+                            <li data-account-type="org">SSL OV 證書 (HK$1,200/年)</li>
+                            <li data-account-type="org">SSL OV 證書（多域版） (HK$1,500/年)</li>
+                            <li data-account-type="org">SSL OV 證書（通配符版） (HK$1,800/年)</li>
+                            <li data-account-type="org">SSL EV 證書 (HK$2,000/年)</li>
+                            <li data-account-type="org">SSL EV 證書（多域版） (HK$2,500/年)</li>
+                            <li data-account-type="personal,org">SSL DV 證書 (HK$500/年)</li>
+                            <li data-account-type="personal,org">SSL DV 證書（多域版） (HK$800/年)</li>
+                            <li data-account-type="personal,org">SSL DV 證書（通配符版） (HK$1,000/年)</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="../certificate/certificate-detail.html?product=電子證書（伺服器）" class="btn btn-primary btn-sm">申请</a>
+                    </div>
                 </div>
             </div>
         </main>
     </div>
     <script src="../assets/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userMenuButton = document.getElementById('userMenuButton');
+            const userMenuDropdown = document.getElementById('userMenuDropdown');
+            const dropdownItems = userMenuDropdown.querySelectorAll('.dropdown-item');
+            const productGrid = document.getElementById('productGrid');
+
+            // 默认账户类型为个人账户
+            const defaultAccountType = 'personal';
+
+            // 根据账户类型过滤产品
+            function filterProducts(accountType) {
+                const productCards = productGrid.querySelectorAll('.product-card');
+                productCards.forEach(card => {
+                    const cardAccountType = card.getAttribute('data-account-type');
+                    if (cardAccountType.includes(accountType) || cardAccountType.includes('personal,org')) {
+                        card.style.display = 'block';
+
+                        // 过滤伺服器子类型
+                        const subItems = card.querySelectorAll('[data-account-type]');
+                        subItems.forEach(subItem => {
+                            const subItemAccountType = subItem.getAttribute('data-account-type');
+                            subItem.style.display = subItemAccountType.includes(accountType) ? 'list-item' : 'none';
+                        });
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            // 页面加载时默认过滤产品
+            filterProducts(defaultAccountType);
+
+            // 切换账户逻辑
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', (event) => {
+                    event.preventDefault();
+
+                    // 获取选中的账户信息
+                    const selectedAccount = item.textContent.trim();
+                    const accountType = selectedAccount.includes('个人账户') ? 'personal' : 'org';
+                    const accountName = selectedAccount.split(': ')[1];
+
+                    // 更新右上角账户信息
+                    userMenuButton.querySelector('span').textContent = `${accountType === 'personal' ? '个人账户' : '机构账户'}: ${accountName}`;
+
+                    // 更新勾选状态
+                    dropdownItems.forEach(i => i.textContent = i.textContent.replace('✓ ', ''));
+                    item.textContent = `✓ ${item.textContent}`;
+
+                    // 根据账户类型过滤产品
+                    filterProducts(accountType);
+                });
+            });
+        });
+    </script>
 </body>
 </html>

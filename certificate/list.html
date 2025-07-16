@@ -10,11 +10,11 @@
     <div class="app-container">
         <aside class="sidebar">
             <div class="sidebar-header">业务下单系统</div>
-            <ul class="sidebar-nav">
-                <li><a href="/orders/products.html">申请新证书</a></li>
-                <li><a href="/orders/list.html">我的订单</a></li>
-                <li><a href="/certificate/list.html">我的证书</a></li>
-            </ul>
+    <ul class="sidebar-nav">
+        <li><a href="/order/products.html">申请新证书</a></li>
+        <li><a href="/order/list.html">我的订单</a></li>
+        <li><a href="/certificate/list.html">我的证书</a></li>
+    </ul>
         </aside>
 
         <main class="main-content">
@@ -43,10 +43,102 @@
                 <div class="card-body">
                     <table>
                         <thead>
-                            <tr><th>申请编号</th><th>证书类型</th><th>登记人参考编号</th><th>有效期</th><th>状态</th><th>操作</th></tr>
+                            <tr>
+                                <th>申请编号</th>
+                                <th>证书类型</th>
+                                <th>申请时间</th>
+                                <th>有效期</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
                         </thead>
                         <tbody>
-                            <tr><td><a href="/certificate/detail.html">APP-PER-00862</a></td><td>電子證書（個人）</td><td>250101-123456</td><td>2024-08-01 - 2025-07-31</td><td><span class="status-badge status-paid">有效</span></td><td><a href="/certificate/detail.html">详情</a> | <a href="#">撤销</a> | <a href="#">续期</a></td></tr>
+                            <!-- 示例证书申请数据 -->
+                            <tr>
+                                <td><a href="/certificate/detail.html">APP-PER-00862</a></td>
+                                <td>電子證書（個人）</td>
+                                <td>2024-07-01</td>
+                                <td>2024-08-01 - 2025-07-31</td>
+                                <td><span class="status-badge status-issued">已颁发</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link dropdown-toggle">查看详情</button>
+                                        <div class="dropdown-menu">
+                                            <a href="/certificate/detail.html" class="dropdown-item">查看详情</a>
+                                            <a href="#" class="dropdown-item">证书撤销</a>
+                                            <a href="#" class="dropdown-item">证书续期</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="/certificate/detail.html">APP-ORG-00543</a></td>
+                                <td>電子證書（機構）</td>
+                                <td>2024-06-15</td>
+                                <td>2024-07-01 - 2025-06-30</td>
+                                <td><span class="status-badge status-pending-issue">待颁发</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link dropdown-toggle">查看详情</button>
+                                        <div class="dropdown-menu">
+                                            <a href="/certificate/detail.html" class="dropdown-item">查看详情</a>
+                                            <a href="#" class="dropdown-item">证书撤销</a>
+                                            <a href="#" class="dropdown-item">证书续期</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="/certificate/detail.html">APP-ORG-00544</a></td>
+                                <td>電子證書（機構）互認版</td>
+                                <td>2024-05-20</td>
+                                <td>2024-06-01 - 2025-05-31</td>
+                                <td><span class="status-badge status-revoked">已撤销</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link dropdown-toggle">查看详情</button>
+                                        <div class="dropdown-menu">
+                                            <a href="/certificate/detail.html" class="dropdown-item">查看详情</a>
+                                            <a href="#" class="dropdown-item">证书撤销</a>
+                                            <a href="#" class="dropdown-item">证书续期</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="/certificate/detail.html">APP-ORG-00545</a></td>
+                                <td>電子證書（保密）</td>
+                                <td>2024-04-10</td>
+                                <td>2024-05-01 - 2025-04-30</td>
+                                <td><span class="status-badge status-pending-revoke">待撤销</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link dropdown-toggle">查看详情</button>
+                                        <div class="dropdown-menu">
+                                            <a href="/certificate/detail.html" class="dropdown-item">查看详情</a>
+                                            <a href="#" class="dropdown-item">证书撤销</a>
+                                            <a href="#" class="dropdown-item">证书续期</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="/certificate/detail.html">APP-EVSSL-001</a></td>
+                                <td>延伸認證電子證书（伺服器）</td>
+                                <td>2024-03-05</td>
+                                <td>2024-04-01 - 2025-03-31</td>
+                                <td><span class="status-badge status-pending-production">待制证</span></td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link dropdown-toggle">查看详情</button>
+                                        <div class="dropdown-menu">
+                                            <a href="/certificate/detail.html" class="dropdown-item">查看详情</a>
+                                            <a href="#" class="dropdown-item">证书撤销</a>
+                                            <a href="#" class="dropdown-item">证书续期</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -54,5 +146,30 @@
         </main>
     </div>
     <script src="/assets/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const userMenuButton = document.getElementById('userMenuButton');
+        const userMenuDropdown = document.getElementById('userMenuDropdown');
+        const dropdownItems = userMenuDropdown.querySelectorAll('.dropdown-item');
+
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                // 获取选中的账户信息
+                const selectedAccount = item.textContent.trim();
+                const accountType = selectedAccount.includes('个人账户') ? '个人账户' : '机构账户';
+                const accountName = selectedAccount.split(': ')[1];
+
+                // 更新右上角账户信息
+                userMenuButton.querySelector('span').textContent = `${accountType}: ${accountName}`;
+
+                // 更新勾选状态
+                dropdownItems.forEach(i => i.textContent = i.textContent.replace('✓ ', ''));
+                item.textContent = `✓ ${item.textContent}`;
+            });
+        });
+    });
+</script>
 </body>
 </html>

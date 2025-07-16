@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>证书申请详情 - 业务下单系统</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <main class="main-content">
+            <header class="header">
+                <h1>证书申请详情</h1>
+            </header>
+            <div class="form-container">
+                <form id="certificateForm">
+                    <div class="form-group">
+                        <label for="product">证书类型：</label>
+                        <input type="text" id="product" name="product" readonly value="電子證書（個人）">
+                    </div>
+                    <div class="form-group">
+                        <label for="domain">申请域名：</label>
+                        <input type="text" id="domain" name="domain" placeholder="请输入域名">
+                    </div>
+                    <div class="form-group">
+                        <label for="medium">选择介质：</label>
+                        <select id="medium" name="medium">
+                            <option value="USB">USB</option>
+                            <option value="智能卡">智能卡</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="addToCart">加入购物车</button>
+                        <button type="submit" class="btn btn-primary">提交申请</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script>
+        document.getElementById('addToCart').addEventListener('click', () => {
+            const form = document.getElementById('certificateForm');
+            const formData = new FormData(form);
+            const product = formData.get('product');
+            const domain = formData.get('domain');
+            const medium = formData.get('medium');
+            
+            if (!domain) {
+                alert('请填写域名');
+                return;
+            }
+
+            // 模拟加入购物车逻辑
+            alert(`已加入购物车：${product}，域名：${domain}，介质：${medium}`);
+            window.location.href = '../cart.html';
+        });
+    </script>
+</body>
+</html>

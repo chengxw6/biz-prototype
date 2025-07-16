@@ -38,6 +38,58 @@ document.addEventListener("DOMContentLoaded", function() {
     if (document.querySelector('input[name="account_type"]')) {
         filterProducts(document.querySelector('input[name="account_type"]:checked').value);
     }
+
+    // --- Certificate Application Details Toggle ---
+    const toggleButtons = document.querySelectorAll('.toggle-details');
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            const targetId = button.getAttribute('data-target');
+            const details = document.getElementById(targetId);
+            details.classList.toggle('hidden');
+        });
+    });
+
+    // --- User Menu Account Switch Logic ---
+    const dropdownItems = userMenuDropdown.querySelectorAll('.dropdown-item');
+    const productGrid = document.getElementById('productGrid');
+
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', (event) => {
+            const textContent = item.textContent.trim();
+
+            // 跳转逻辑
+            if (textContent.includes('账户信息修改')) {
+                window.location.href = '../account/profile.html';
+                return;
+            }
+
+            if (textContent.includes('退出登录')) {
+                window.location.href = '../account/login.html';
+                return;
+            }
+
+            // 切换账户逻辑
+            if (textContent.includes('个人账户') || textContent.includes('机构账户')) {
+                event.preventDefault();
+
+                const accountType = textContent.includes('个人账户') ? 'personal' : 'org';
+                const accountName = textContent.split(': ')[1];
+
+                // 更新右上角账户信息
+                userMenuButton.querySelector('span').textContent = `${accountType === 'personal' ? '个人账户' : '机构账户'}: ${accountName}`;
+
+                // 更新勾选状态
+                dropdownItems.forEach(i => i.textContent = i.textContent.replace('✓ ', ''));
+                item.textContent = `✓ ${item.textContent}`;
+
+                // 根据账户类型过滤产品（仅适用于产品页面）
+                if (document.getElementById('productGrid')) {
+                    filterProducts(accountType);
+                }
+            }
+        });
+    });
 });
 
 // --- Tab Switching Functionality ---
@@ -59,10 +111,32 @@ function filterProducts(accountType) {
     const productCards = document.querySelectorAll('.product-card');
     productCards.forEach(card => {
         const allowedTypes = card.dataset.accountType.split(',');
-        if (allowedTypes.includes(accountType) || allowedTypes.includes('all')) {
-            card.classList.remove('hidden');
+        if (allowedTypes.includes(accountType)) {
+            card.style.display = 'block';
+
+            // 过滤伺服器子类型
+            const subItems = card.querySelectorAll('[data-account-type]');
+            subItems.forEach(subItem => {
+                const subItemAccountType = subItem.getAttribute('data-account-type');
+                subItem.style.display = subItemAccountType.includes(accountType) ? 'list-item' : 'none';
+            });
         } else {
-            card.classList.add('hidden');
+            card.style.display = 'none';
         }
     });
 }
+
+// 账户切换逻辑
+document.addEventListener('DOMContentLoaded', () => {
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const selectedAccount = item.textContent.trim();
+            const accountType = selectedAccount.includes('个人账户') ? 'personal' : 'org';
+
+            filterProducts(accountType);
+        });
+    });
+});
