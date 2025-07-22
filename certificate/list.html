@@ -21,13 +21,13 @@
             <header class="header">
                 <div class="user-menu">
                     <button class="user-menu-button" id="userMenuButton">
-                        <span>个人账户: Cheng Xiuwen</span>
+                        <span>个人账户: 张三</span>
                         <i class="arrow"></i>
                     </button>
                     <div class="user-menu-dropdown" id="userMenuDropdown">
                         <div class="dropdown-header">切换账户</div>
-                        <a href="#" class="dropdown-item">✓ 个人账户: Cheng Xiuwen</a>
-                        <a href="#" class="dropdown-item">机构账户: GDCA Co., Ltd.</a>
+                        <a href="#" class="dropdown-item">✓ 个人账户: 张三</a>
+                        <a href="#" class="dropdown-item">机构账户: 示例科技有限公司</a>
                         <div class="dropdown-divider"></div>
                         <a href="/account/profile.html" class="dropdown-item">账户信息修改</a>
                         <a href="/account/login.html" class="dropdown-item">退出登录</a>
@@ -53,6 +53,25 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- 新增待提交状态的证书 -->
+                            <tr>
+                                <td><a href="/certificate/edit.html">APP-SSL-00123</a></td>
+                                <td>SSL DV 證書</td>
+                                <td>2025-07-22</td>
+                                <td>待定</td>
+                                <td><span class="status-badge status-pending-submit">待提交</span></td>
+                                <td>
+                                    <div class="manage-dropdown" data-status="pending-submit">
+                                        <button class="btn btn-sm btn-primary manage-btn">管理</button>
+                                        <div class="manage-menu">
+                                            <a href="/certificate/detail.html" class="manage-item">查看详情</a>
+                                            <a href="/certificate/edit.html" class="manage-item">编辑申请</a>
+                                            <a href="#" class="manage-item">删除申请</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            
                             <!-- 示例证书申请数据 -->
                             <tr>
                                 <td><a href="/certificate/detail.html">APP-PER-00862</a></td>
@@ -61,12 +80,13 @@
                                 <td>2024-08-01 - 2025-07-31</td>
                                 <td><span class="status-badge status-issued">已颁发</span></td>
                                 <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-link dropdown-toggle">查看详情</button>
-                                        <div class="dropdown-menu">
-                                            <a href="/certificate/detail.html" class="dropdown-item">查看详情</a>
-                                            <a href="#" class="dropdown-item">证书撤销</a>
-                                            <a href="#" class="dropdown-item">证书续期</a>
+                                    <div class="manage-dropdown" data-status="issued">
+                                        <button class="btn btn-sm btn-primary manage-btn">管理</button>
+                                        <div class="manage-menu">
+                                            <a href="/certificate/detail.html" class="manage-item">查看详情</a>
+                                            <a href="#" class="manage-item">下载证书</a>
+                                            <a href="#" class="manage-item">申请续期</a>
+                                            <a href="#" class="manage-item">申请撤销</a>
                                         </div>
                                     </div>
                                 </td>
@@ -78,12 +98,10 @@
                                 <td>2024-07-01 - 2025-06-30</td>
                                 <td><span class="status-badge status-pending-issue">待颁发</span></td>
                                 <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-link dropdown-toggle">查看详情</button>
-                                        <div class="dropdown-menu">
-                                            <a href="/certificate/detail.html" class="dropdown-item">查看详情</a>
-                                            <a href="#" class="dropdown-item">证书撤销</a>
-                                            <a href="#" class="dropdown-item">证书续期</a>
+                                    <div class="manage-dropdown" data-status="pending-issue">
+                                        <button class="btn btn-sm btn-primary manage-btn">管理</button>
+                                        <div class="manage-menu">
+                                            <a href="/certificate/detail.html" class="manage-item">查看详情</a>
                                         </div>
                                     </div>
                                 </td>
@@ -95,12 +113,10 @@
                                 <td>2024-06-01 - 2025-05-31</td>
                                 <td><span class="status-badge status-revoked">已撤销</span></td>
                                 <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-link dropdown-toggle">查看详情</button>
-                                        <div class="dropdown-menu">
-                                            <a href="/certificate/detail.html" class="dropdown-item">查看详情</a>
-                                            <a href="#" class="dropdown-item">证书撤销</a>
-                                            <a href="#" class="dropdown-item">证书续期</a>
+                                    <div class="manage-dropdown" data-status="revoked">
+                                        <button class="btn btn-sm btn-primary manage-btn">管理</button>
+                                        <div class="manage-menu">
+                                            <a href="/certificate/detail.html" class="manage-item">查看详情</a>
                                         </div>
                                     </div>
                                 </td>
@@ -112,12 +128,10 @@
                                 <td>2024-05-01 - 2025-04-30</td>
                                 <td><span class="status-badge status-pending-revoke">待撤销</span></td>
                                 <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-link dropdown-toggle">查看详情</button>
-                                        <div class="dropdown-menu">
-                                            <a href="/certificate/detail.html" class="dropdown-item">查看详情</a>
-                                            <a href="#" class="dropdown-item">证书撤销</a>
-                                            <a href="#" class="dropdown-item">证书续期</a>
+                                    <div class="manage-dropdown" data-status="pending-revoke">
+                                        <button class="btn btn-sm btn-primary manage-btn">管理</button>
+                                        <div class="manage-menu">
+                                            <a href="/certificate/detail.html" class="manage-item">查看详情</a>
                                         </div>
                                     </div>
                                 </td>
@@ -129,12 +143,11 @@
                                 <td>2024-04-01 - 2025-03-31</td>
                                 <td><span class="status-badge status-pending-production">待制证</span></td>
                                 <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-link dropdown-toggle">查看详情</button>
-                                        <div class="dropdown-menu">
-                                            <a href="/certificate/detail.html" class="dropdown-item">查看详情</a>
-                                            <a href="#" class="dropdown-item">证书撤销</a>
-                                            <a href="#" class="dropdown-item">证书续期</a>
+                                    <div class="manage-dropdown" data-status="pending-production">
+                                        <button class="btn btn-sm btn-primary manage-btn">管理</button>
+                                        <div class="manage-menu">
+                                            <a href="/certificate/detail.html" class="manage-item">查看详情</a>
+                                            <a href="#" class="manage-item">提交CSR</a>
                                         </div>
                                     </div>
                                 </td>

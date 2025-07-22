@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>证书详情 - 业务下单系统</title>
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">业务下单系统</div>
+            <ul class="sidebar-nav">
+                <li><a href="/order/products.html">申请新证书</a></li>
+                <li><a href="/order/list.html">我的订单</a></li>
+                <li><a href="/certificate/list.html">我的证书</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="user-menu">
+                    <button class="user-menu-button" id="userMenuButton">
+                        <span>个人账户: 张三</span>
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="user-menu-dropdown" id="userMenuDropdown">
+                        <div class="dropdown-header">切换账户</div>
+                        <a href="#" class="dropdown-item" data-account-type="personal" data-account-name="张三">✓ 个人账户: 张三</a>
+                        <a href="#" class="dropdown-item" data-account-type="org" data-account-name="示例科技有限公司">机构账户: 示例科技有限公司</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="/account/profile.html" class="dropdown-item">账户信息修改</a>
+                        <a href="/account/login.html" class="dropdown-item">退出登录</a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-header">
+                <h1>证书详情</h1>
+                <p>查看证书申请的详细信息和操作历史</p>
+            </div>
+
+            <!-- 模块一：证书信息 -->
+            <div class="card">
+                <div class="card-header">证书信息</div>
+                <div class="card-body">
+                    <div class="certificate-summary">
+                        <div class="summary-info">
+                            <div class="info-row">
+                                <div class="info-label">证书申请编号</div>
+                                <div class="info-value">APP-PER-00862</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">归属订单号</div>
+                                <div class="info-value">
+                                    <a href="/order/detail.html?id=ORD20250715001">ORD20250715001</a>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">证书序列号</div>
+                                <div class="info-value">1A:2B:3C:4D:5E:6F:7G:8H</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">证书有效期</div>
+                                <div class="info-value">2024-08-01 至 2025-07-31</div>
+                            </div>
+                        </div>
+                        <div class="summary-actions">
+                            <button class="btn btn-primary" id="downloadCertBtn">下载证书</button>
+                            <button class="btn btn-danger" id="revokeCertBtn">申请撤销</button>
+                            <button class="btn btn-secondary" id="resendEmailBtn">重发密钥邮件</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 模块二：证书申请详情 -->
+            <div class="card">
+                <div class="card-header">证书申请详情</div>
+                <div class="card-body">
+                    <form class="readonly-form">
+                        <fieldset class="readonly-fieldset">
+                            <legend>个人信息</legend>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>申请人英文姓名</label>
+                                    <input type="text" value="San Zhang" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label>申请人中文姓名</label>
+                                    <input type="text" value="张三" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label>申请人称谓</label>
+                                    <select disabled>
+                                        <option>先生</option>
+                                        <option selected>女士</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>申请人出生日期</label>
+                                    <input type="text" value="01/01/1990" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label>香港身份证/证件号码</label>
+                                    <input type="text" value="Y123456(7)" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label>流动电话号码</label>
+                                    <input type="text" value="+852 9876 5432" disabled>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label>电邮地址</label>
+                                    <input type="email" value="zhang.san@example.com" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label>职衔</label>
+                                    <input type="text" value="项目经理" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label>办公室号码</label>
+                                    <input type="text" value="+852 2345 6789" disabled>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label>传真号码</label>
+                                    <input type="text" value="+852 2345 6780" disabled>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label>身份证明文件</label>
+                                    <ul class="file-list">
+                                        <li>HKID_Scan.pdf (<a href="#">查看</a>)</li>
+                                        <li>Passport_Copy.pdf (<a href="#">查看</a>)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </fieldset>
+                        
+                        <fieldset class="readonly-fieldset">
+                            <legend>证书配置</legend>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>证书类型</label>
+                                    <input type="text" value="電子證書（個人）" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label>证书有效期</label>
+                                    <select disabled>
+                                        <option selected>1年</option>
+                                        <option>2年</option>
+                                        <option>3年</option>
+                                    </select>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label>特殊要求</label>
+                                    <textarea disabled rows="3">无特殊要求</textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 模块三：操作日志 -->
+            <div class="card">
+                <div class="card-header">操作日志</div>
+                <div class="card-body">
+                    <table class="action-log-table">
+                        <thead>
+                            <tr>
+                                <th>时间</th>
+                                <th>操作人</th>
+                                <th>操作内容</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2025-07-21 14:30:15</td>
+                                <td>用户: 张三</td>
+                                <td>提交证书申请</td>
+                            </tr>
+                            <tr>
+                                <td>2025-07-21 14:32:01</td>
+                                <td>系统</td>
+                                <td>订单支付成功，申请状态变更为 -> 待提交</td>
+                            </tr>
+                            <tr>
+                                <td>2025-07-21 16:45:22</td>
+                                <td>系统</td>
+                                <td>申请资料审核中，申请状态变更为 -> 待颁发</td>
+                            </tr>
+                            <tr>
+                                <td>2025-07-22 10:05:40</td>
+                                <td>系统</td>
+                                <td>CMS系统审核通过，申请状态变更为 -> 已颁发</td>
+                            </tr>
+                            <tr>
+                                <td>2025-07-22 10:06:15</td>
+                                <td>系统</td>
+                                <td>证书生成完成，序列号: 1A:2B:3C:4D:5E:6F:7G:8H</td>
+                            </tr>
+                            <tr>
+                                <td>2025-07-22 10:07:30</td>
+                                <td>系统</td>
+                                <td>证书下载链接已发送至用户邮箱: zhang.san@example.com</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 下载证书模态框 -->
+    <div class="modal-overlay" id="downloadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>下载证书</h3>
+                <button class="modal-close" id="downloadModalCloseBtn">×</button>
+            </div>
+            <div class="modal-body">
+                <p>证书下载链接已发送至您的邮箱，请查收并按指引操作。</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="downloadModalConfirmBtn">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 申请撤销模态框 -->
+    <div class="modal-overlay" id="revokeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>申请撤销</h3>
+                <button class="modal-close" id="revokeModalCloseBtn">×</button>
+            </div>
+            <div class="modal-body">
+                <p>证书撤销申请已提交，确认邮件已发送至您的邮箱，请查收并按指引操作。</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="revokeModalConfirmBtn">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 重发密钥邮件模态框 -->
+    <div class="modal-overlay" id="resendModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>重发密钥邮件</h3>
+                <button class="modal-close" id="resendModalCloseBtn">×</button>
+            </div>
+            <div class="modal-body">
+                <p>密钥邮件已重新发送至您的邮箱，请查收并按指引操作。</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="resendModalConfirmBtn">确定</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    // 直接在页面中添加事件处理，确保按钮点击有效
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Certificate detail page loaded - inline script');
+        
+        // 初始化账户切换功能
+        initializeUserMenu();
+        
+        // 初始化模态框功能
+        initializeModals();
+    });
+    
+    // 账户切换功能
+    function initializeUserMenu() {
+        const userMenuButton = document.getElementById('userMenuButton');
+        const userMenuDropdown = document.getElementById('userMenuDropdown');
+        
+        if (!userMenuButton || !userMenuDropdown) {
+            console.error('User menu elements not found');
+            return;
+        }
+        
+        console.log('Initializing user menu...');
+        
+        // 点击用户菜单按钮显示下拉菜单
+        userMenuButton.addEventListener('click', function(event) {
+            console.log('User menu button clicked');
+            event.stopPropagation();
+            userMenuDropdown.classList.toggle('show');
+        });
+        
+        // 点击页面其他区域关闭下拉菜单
+        document.addEventListener('click', function(event) {
+            if (userMenuDropdown.classList.contains('show') && 
+                !event.target.closest('.user-menu')) {
+                userMenuDropdown.classList.remove('show');
+            }
+        });
+        
+        // 账户切换逻辑
+        const dropdownItems = userMenuDropdown.querySelectorAll('.dropdown-item[data-account-type]');
+        console.log('Found dropdown items:', dropdownItems.length);
+        
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', function(event) {
+                event.preventDefault();
+                console.log('Account switch clicked:', this.dataset.accountType);
+                
+                const accountType = this.dataset.accountType;
+                const accountName = this.dataset.accountName;
+                
+                // 更新右上角账户信息
+                const accountTypeText = accountType === 'personal' ? '个人账户' : '机构账户';
+                userMenuButton.querySelector('span').textContent = `${accountTypeText}: ${accountName}`;
+                
+                // 更新勾选状态
+                dropdownItems.forEach(i => {
+                    if (i.textContent.includes('✓')) {
+                        i.textContent = i.textContent.replace('✓ ', '');
+                    }
+                });
+                if (!this.textContent.includes('✓')) {
+                    this.textContent = `✓ ${this.textContent}`;
+                }
+                
+                // 关闭下拉菜单
+                userMenuDropdown.classList.remove('show');
+            });
+        });
+    }
+    
+    // 模态框功能
+    function initializeModals() {
+        // 获取按钮和模态框
+        const downloadBtn = document.getElementById('downloadCertBtn');
+        const revokeBtn = document.getElementById('revokeCertBtn');
+        const resendEmailBtn = document.getElementById('resendEmailBtn');
+        
+        const downloadModal = document.getElementById('downloadModal');
+        const revokeModal = document.getElementById('revokeModal');
+        const resendModal = document.getElementById('resendModal');
+        
+        // 下载证书按钮事件
+        downloadBtn.addEventListener('click', function() {
+            console.log('Download button clicked - inline');
+            downloadModal.classList.add('active');
+        });
+        
+        // 申请撤销按钮事件
+        revokeBtn.addEventListener('click', function() {
+            console.log('Revoke button clicked - inline');
+            revokeModal.classList.add('active');
+        });
+        
+        // 重发密钥邮件按钮事件
+        resendEmailBtn.addEventListener('click', function() {
+            console.log('Resend email button clicked - inline');
+            resendModal.classList.add('active');
+        });
+        
+        // 关闭按钮事件
+        document.getElementById('downloadModalCloseBtn').addEventListener('click', function() {
+            downloadModal.classList.remove('active');
+        });
+        
+        document.getElementById('revokeModalCloseBtn').addEventListener('click', function() {
+            revokeModal.classList.remove('active');
+        });
+        
+        document.getElementById('resendModalCloseBtn').addEventListener('click', function() {
+            resendModal.classList.remove('active');
+        });
+        
+        // 确认按钮事件
+        document.getElementById('downloadModalConfirmBtn').addEventListener('click', function() {
+            downloadModal.classList.remove('active');
+        });
+        
+        document.getElementById('revokeModalConfirmBtn').addEventListener('click', function() {
+            revokeModal.classList.remove('active');
+        });
+        
+        document.getElementById('resendModalConfirmBtn').addEventListener('click', function() {
+            resendModal.classList.remove('active');
+        });
+        
+        // 点击模态框外部关闭
+        downloadModal.addEventListener('click', function(event) {
+            if (event.target === downloadModal) {
+                downloadModal.classList.remove('active');
+            }
+        });
+        
+        revokeModal.addEventListener('click', function(event) {
+            if (event.target === revokeModal) {
+                revokeModal.classList.remove('active');
+            }
+        });
+        
+        resendModal.addEventListener('click', function(event) {
+            if (event.target === resendModal) {
+                resendModal.classList.remove('active');
+            }
+        });
+    }
+    </script>
+
+    <script src="/assets/main.js"></script>
+    <script src="/assets/certificate-detail.js"></script>
+</body>
+</html>

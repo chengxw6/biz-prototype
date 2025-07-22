@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单支付 - 业务下单系统</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">业务下单系统</div>
+            <ul class="sidebar-nav">
+                <li><a href="products.html">申请新证书</a></li>
+                <li><a href="list.html">我的订单</a></li>
+                <li><a href="../certificate/list.html">我的证书</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="user-menu">
+                    <button class="user-menu-button" id="userMenuButton">
+                        <span>个人账户: Cheng Xiuwen</span>
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="user-menu-dropdown" id="userMenuDropdown">
+                        <div class="dropdown-header">切换账户</div>
+                        <a href="#" class="dropdown-item active" data-account-type="personal" data-account-name="Cheng Xiuwen">✓ 个人账户: Cheng Xiuwen</a>
+                        <a href="#" class="dropdown-item" data-account-type="org" data-account-name="GDCA Co., Ltd.">机构账户: GDCA Co., Ltd.</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="../account/profile.html" class="dropdown-item">账户信息修改</a>
+                        <a href="../account/login.html" class="dropdown-item">退出登录</a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-header">
+                <h1>订单支付</h1>
+            </div>
+
+            <div class="payment-process">
+                <div class="process-steps">
+                    <div class="step completed">
+                        <div class="step-number">1</div>
+                        <div class="step-name">确认订单</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step active">
+                        <div class="step-number">2</div>
+                        <div class="step-name">支付</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-name">完成</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">订单摘要</div>
+                <div class="card-body">
+                    <table class="order-summary-table">
+                        <thead>
+                            <tr>
+                                <th>产品名称</th>
+                                <th>单价</th>
+                                <th>数量</th>
+                                <th>小计</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orderItems">
+                            <!-- 订单项将通过JavaScript动态添加 -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-right"><strong>总计：</strong></td>
+                                <td id="orderTotal" class="total-price">HK$0</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">支付方式</div>
+                <div class="card-body">
+                    <div class="payment-methods">
+                        <div class="payment-method">
+                            <input type="radio" name="payment_method" id="credit_card" value="credit_card" checked>
+                            <label for="credit_card">
+                                <div class="payment-logo">💳</div>
+                                <div class="payment-name">信用卡支付</div>
+                            </label>
+                        </div>
+                        <div class="payment-method">
+                            <input type="radio" name="payment_method" id="alipay" value="alipay">
+                            <label for="alipay">
+                                <div class="payment-logo">💰</div>
+                                <div class="payment-name">支付宝</div>
+                            </label>
+                        </div>
+                        <div class="payment-method">
+                            <input type="radio" name="payment_method" id="wechat" value="wechat">
+                            <label for="wechat">
+                                <div class="payment-logo">💚</div>
+                                <div class="payment-name">微信支付</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="credit_card_form" class="payment-form">
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="card_number">卡号 <span class="required">*</span></label>
+                                <input type="text" id="card_number" placeholder="1234 5678 9012 3456" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="expiry_date">有效期 <span class="required">*</span></label>
+                                <input type="text" id="expiry_date" placeholder="MM/YY" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">安全码 <span class="required">*</span></label>
+                                <input type="text" id="cvv" placeholder="123" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="card_holder">持卡人姓名 <span class="required">*</span></label>
+                                <input type="text" id="card_holder" placeholder="持卡人姓名" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="alipay_form" class="payment-form hidden">
+                        <p class="payment-instruction">点击"确认支付"后，将生成支付宝付款二维码</p>
+                    </div>
+
+                    <div id="wechat_form" class="payment-form hidden">
+                        <p class="payment-instruction">点击"确认支付"后，将生成微信支付二维码</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">发票信息</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="invoice_type">发票类型</label>
+                        <select id="invoice_type">
+                            <option value="electronic">电子发票</option>
+                            <option value="paper">纸质发票</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="invoice_title">发票抬头</label>
+                        <input type="text" id="invoice_title" placeholder="个人/公司名称">
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="confirm.html" class="btn btn-secondary">返回修改</a>
+                <button id="submitPayment" class="btn btn-primary">确认支付</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- 支付成功模态框 -->
+    <div id="paymentSuccessModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>支付成功</h2>
+            </div>
+            <div class="modal-body">
+                <div class="success-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+                        stroke="#28a745" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                </div>
+                <p>您的订单已支付成功！</p>
+                <p>订单号: <span id="orderNumber"></span></p>
+                <p>请前往"我的证书"页面完善证书申请信息。</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="confirmPaymentBtn">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('Payment page loaded');
+            
+            // 从sessionStorage获取订单信息
+            const orderInfoJson = sessionStorage.getItem('orderInfo');
+            console.log('读取到的订单信息:', orderInfoJson);
+
+            // 如果没有订单信息，创建测试数据或重定向
+            let orderInfo;
+            if (!orderInfoJson) {
+                console.log('没有找到订单信息，使用测试数据');
+                // 创建测试订单信息
+                orderInfo = {
+                    items: [
+                        {
+                            id: 'personal-1234567890',
+                            name: '電子證書（個人） (1年 - HK$50)',
+                            price: 50,
+                            quantity: 1
+                        },
+                        {
+                            id: 'ssl-dv-example.com-1234567892',
+                            name: 'SSL证书 (DV证书; 域名: example.com; 1年)',
+                            price: 500,
+                            quantity: 1
+                        }
+                    ],
+                    totalPrice: 550
+                };
+            } else {
+                orderInfo = JSON.parse(orderInfoJson);
+            }
+
+            const cartItems = orderInfo.items;
+            const totalPrice = orderInfo.totalPrice;
+
+            // 渲染订单项
+            const orderItemsContainer = document.getElementById('orderItems');
+            const orderTotalElement = document.getElementById('orderTotal');
+
+            cartItems.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>HK$${item.price.toFixed(0)}</td>
+                    <td>${item.quantity}</td>
+                    <td>HK$${itemTotal.toFixed(0)}</td>
+                `;
+                orderItemsContainer.appendChild(row);
+            });
+
+            // 更新总价
+            orderTotalElement.textContent = `HK$${totalPrice.toFixed(0)}`;
+
+            // 支付方式切换
+            const paymentMethods = document.querySelectorAll('input[name="payment_method"]');
+            const paymentForms = document.querySelectorAll('.payment-form');
+
+            paymentMethods.forEach(method => {
+                method.addEventListener('change', function () {
+                    paymentForms.forEach(form => form.classList.add('hidden'));
+                    document.getElementById(`${this.value}_form`).classList.remove('hidden');
+                });
+            });
+
+            // 支付成功模态框相关元素
+            const paymentSuccessModal = document.getElementById('paymentSuccessModal');
+            const orderNumberElement = document.getElementById('orderNumber');
+            const confirmPaymentBtn = document.getElementById('confirmPaymentBtn');
+
+            // 提交支付按钮
+            const submitPaymentBtn = document.getElementById('submitPayment');
+
+            submitPaymentBtn.addEventListener('click', function () {
+                console.log('Submit payment button clicked');
+                
+                // 验证支付信息
+                const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+
+                if (paymentMethod === 'credit_card') {
+                    const cardNumber = document.getElementById('card_number').value.trim();
+                    const expiryDate = document.getElementById('expiry_date').value.trim();
+                    const cvv = document.getElementById('cvv').value.trim();
+                    const cardHolder = document.getElementById('card_holder').value.trim();
+
+                    if (!cardNumber || !expiryDate || !cvv || !cardHolder) {
+                        alert('请填写完整的信用卡信息');
+                        return;
+                    }
+                }
+
+                // 模拟支付处理
+                submitPaymentBtn.disabled = true;
+                submitPaymentBtn.textContent = '处理中...';
+
+                setTimeout(() => {
+                    console.log('Payment processing completed');
+                    
+                    // 生成随机订单号
+                    const orderNumber = 'ORD-' + Date.now().toString().slice(-8) + '-' + Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+                    orderNumberElement.textContent = orderNumber;
+
+                    // 显示支付成功模态框
+                    paymentSuccessModal.style.display = 'block';
+                    console.log('Payment success modal displayed');
+
+                    // 清空购物车和订单数据
+                    sessionStorage.removeItem('cartItems');
+                    sessionStorage.removeItem('orderInfo');
+                }, 1500);
+            });
+
+            // 确定按钮点击事件 - 跳转到"我的证书"页面
+            confirmPaymentBtn.addEventListener('click', function () {
+                console.log('Confirm button clicked, redirecting to certificate list');
+                paymentSuccessModal.style.display = 'none';
+                window.location.href = '../certificate/list.html';
+            });
+
+            // 点击模态框外部关闭（可选）
+            window.addEventListener('click', function (event) {
+                if (event.target === paymentSuccessModal) {
+                    console.log('Modal overlay clicked, redirecting to certificate list');
+                    paymentSuccessModal.style.display = 'none';
+                    window.location.href = '../certificate/list.html';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

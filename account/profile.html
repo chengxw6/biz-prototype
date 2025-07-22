@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>账户信息 - 业务下单系统</title>
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">业务下单系统</div>
+            <ul class="sidebar-nav">
+                <li><a href="/order/products.html">申请新证书</a></li>
+                <li><a href="/order/list.html">我的订单</a></li>
+                <li><a href="/certificate/list.html">我的证书</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="user-menu">
+                    <button class="user-menu-button" id="userMenuButton">
+                        <span>个人账户: 张三</span>
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="user-menu-dropdown" id="userMenuDropdown">
+                        <div class="dropdown-header">切换账户</div>
+                        <a href="#" class="dropdown-item" data-account-type="personal" data-account-name="张三">✓ 个人账户:
+                            张三</a>
+                        <a href="#" class="dropdown-item" data-account-type="org" data-account-name="示例科技有限公司">机构账户:
+                            示例科技有限公司</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="/account/profile.html" class="dropdown-item">账户信息修改</a>
+                        <a href="/account/login.html" class="dropdown-item">退出登录</a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-header">
+                <h1>账户信息管理</h1>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="tabs">
+                        <button class="tab-button active" onclick="showTab(this, 'personal-info')">个人账户信息</button>
+                        <button class="tab-button" onclick="showTab(this, 'org-info')">机构账户信息</button>
+                    </div>
+
+                    <div id="personal-info" class="tab-content active">
+                        <form id="personalProfileForm">
+                            <fieldset id="personalFieldset" disabled>
+                                <legend>个人信息</legend>
+                                <div class="form-grid">
+                                    <div class="form-group"><label>申请人英文姓名</label><input type="text" value="San Zhang">
+                                    </div>
+                                    <div class="form-group"><label>申请人中文姓名</label><input type="text" value="张三"></div>
+                                    <div class="form-group"><label>申请人称谓</label><select>
+                                            <option>先生</option>
+                                            <option selected>女士</option>
+                                        </select></div>
+                                    <div class="form-group"><label>申请人出生日期</label><input type="text" value="01/01/1990"
+                                            placeholder="DD/MM/YYYY"></div>
+                                    <div class="form-group"><label>香港身份证/证件号码</label><input type="text"
+                                            value="Y123456(7)"></div>
+                                    <div class="form-group"><label>流动电话号码</label><input type="text"
+                                            value="+852 9876 5432"></div>
+                                    <div class="form-group full-width"><label>电邮地址</label><input type="email"
+                                            value="zhang.san@example.com"></div>
+                                    <div class="form-group"><label>职衔</label><input type="text" value="项目经理"></div>
+                                    <div class="form-group"><label>办公室号码</label><input type="text"
+                                            value="+852 2345 6789"></div>
+                                    <div class="form-group full-width"><label>传真号码</label><input type="text"
+                                            value="+852 2345 6780"></div>
+                                    <div class="form-group full-width">
+                                        <label>身份证明文件</label>
+                                        <ul class="file-list">
+                                            <li>HKID_Scan.pdf (<a href="#">查看</a>)</li>
+                                        </ul>
+                                        <div class="edit-mode-only" style="display: none;"><input type="file" multiple>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>登录信息</legend>
+                                <div class="form-grid">
+                                    <div class="form-group"><label>登录邮箱</label><input type="email"
+                                            value="zhang.san@example.com" disabled></div>
+                                    <div class="form-group"><label>登录密码</label><button type="button"
+                                            class="btn">更改密码</button></div>
+                                </div>
+                            </fieldset>
+                            <div class="form-actions" style="text-align: right; margin-top: 20px;">
+                                <button type="button" class="btn btn-primary" id="editPersonalBtn">编辑资料</button>
+                                <button type="submit" class="btn btn-success" id="savePersonalBtn"
+                                    style="display: none;">保存更改</button>
+                                <button type="button" class="btn btn-secondary" id="cancelPersonalBtn"
+                                    style="display: none;">取消</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="org-info" class="tab-content">
+                        <form id="orgProfileForm">
+                            <fieldset id="orgFieldset" disabled>
+                                <legend>机构信息</legend>
+                                <div class="form-grid">
+                                    <div class="form-group"><label>机构英文名称</label><input type="text"
+                                            value="Sample Technology Co., Ltd."></div>
+                                    <div class="form-group"><label>机构中文名称</label><input type="text" value="示例科技有限公司">
+                                    </div>
+                                    <div class="form-group"><label>机构分行/部门英文名称</label><input type="text"
+                                            value="Technology Department"></div>
+                                    <div class="form-group"><label>机构分行/部门中文名称</label><input type="text" value="技术部">
+                                    </div>
+                                    <div class="form-group"><label>商业登记证编号(BRN)</label><input type="text"
+                                            value="12345678-000-11-24-A"></div>
+                                    <div class="form-group"><label>公司注册证编号(CI/CR)</label><input type="text"
+                                            value="98765432"></div>
+                                    <div class="form-group full-width"><label>其他注册证明文件(Others)</label><input
+                                            type="text"></div>
+                                    <div class="form-group full-width"><label>机构地址</label><input type="text"
+                                            value="123 Queen's Road, Central, Hong Kong"></div>
+                                    <div class="form-group full-width"><label>机构证明文件</label>
+                                        <ul class="file-list">
+                                            <li>Business_Registration.pdf (<a href="#">查看</a>)</li>
+                                        </ul>
+                                        <div class="edit-mode-only" style="display: none;"><input type="file" multiple>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset id="handlerFieldset" disabled>
+                                <legend>经办人信息</legend>
+                                <div class="form-grid">
+                                    <div class="form-group"><label>申请人英文姓名</label><input type="text" value="Si Li">
+                                    </div>
+                                    <div class="form-group"><label>申请人中文姓名</label><input type="text" value="李四"></div>
+                                    <div class="form-group"><label>香港身份证/证件号码</label><input type="text"
+                                            value="Z987654(3)"></div>
+                                    <div class="form-group"><label>电邮地址</label><input type="email"
+                                            value="li.si@example.com"></div>
+                                </div>
+                            </fieldset>
+                            <fieldset id="techFieldset" disabled>
+                                <legend>技术人员信息</legend>
+                                <div class="form-grid">
+                                    <div class="form-group"><label>技术人员英文姓名</label><input type="text"></div>
+                                    <div class="form-group"><label>联络电话号码</label><input type="text"></div>
+                                    <div class="form-group full-width"><label>电邮地址</label><input type="email"></div>
+                                </div>
+                            </fieldset>
+                            <div class="form-actions" style="text-align: right; margin-top: 20px;">
+                                <button type="button" class="btn btn-primary" id="editOrgBtn">编辑资料</button>
+                                <button type="submit" class="btn btn-success" id="saveOrgBtn"
+                                    style="display: none;">保存更改</button>
+                                <button type="button" class="btn btn-secondary" id="cancelOrgBtn"
+                                    style="display: none;">取消</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/assets/main.js"></script>
+    <script>
+        // 账户信息页面专用脚本
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('Profile page loaded - initializing functionality');
+
+            // 初始化账户切换功能
+            initializeAccountSwitching();
+
+            // 初始化标签切换功能
+            initializeTabSwitching();
+
+            // 初始化编辑功能
+            initializeEditFunctionality();
+        });
+
+        // 账户切换功能
+        function initializeAccountSwitching() {
+            const userMenuButton = document.getElementById('userMenuButton');
+            const userMenuDropdown = document.getElementById('userMenuDropdown');
+
+            if (!userMenuButton || !userMenuDropdown) {
+                console.error('User menu elements not found');
+                return;
+            }
+
+            console.log('Initializing account switching...');
+
+            // 清除可能存在的事件监听器，重新添加
+            const newUserMenuButton = userMenuButton.cloneNode(true);
+            userMenuButton.parentNode.replaceChild(newUserMenuButton, userMenuButton);
+
+            // 重新获取元素引用
+            const freshUserMenuButton = document.getElementById('userMenuButton');
+            const freshUserMenuDropdown = document.getElementById('userMenuDropdown');
+
+            // 点击用户菜单按钮显示下拉菜单
+            freshUserMenuButton.addEventListener('click', function (event) {
+                console.log('User menu button clicked');
+                event.stopPropagation();
+                freshUserMenuDropdown.classList.toggle('show');
+            });
+
+            // 点击页面其他区域关闭下拉菜单
+            document.addEventListener('click', function (event) {
+                if (freshUserMenuDropdown.classList.contains('show') &&
+                    !event.target.closest('.user-menu')) {
+                    freshUserMenuDropdown.classList.remove('show');
+                }
+            });
+
+            // 账户切换逻辑
+            const dropdownItems = freshUserMenuDropdown.querySelectorAll('.dropdown-item[data-account-type]');
+            console.log('Found dropdown items:', dropdownItems.length);
+
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    console.log('Account switch clicked:', this.dataset.accountType);
+
+                    const accountType = this.dataset.accountType;
+                    const accountName = this.dataset.accountName;
+
+                    // 更新右上角账户信息
+                    const accountTypeText = accountType === 'personal' ? '个人账户' : '机构账户';
+                    freshUserMenuButton.querySelector('span').textContent = `${accountTypeText}: ${accountName}`;
+
+                    // 更新勾选状态
+                    dropdownItems.forEach(i => {
+                        if (i.textContent.includes('✓')) {
+                            i.textContent = i.textContent.replace('✓ ', '');
+                        }
+                    });
+                    if (!this.textContent.includes('✓')) {
+                        this.textContent = `✓ ${this.textContent}`;
+                    }
+
+                    // 根据账户类型切换到相应的标签页
+                    if (accountType === 'personal') {
+                        switchToTab('personal-info');
+                    } else if (accountType === 'org') {
+                        switchToTab('org-info');
+                    }
+
+                    // 关闭下拉菜单
+                    freshUserMenuDropdown.classList.remove('show');
+                });
+            });
+        }
+
+        // 标签切换功能
+        function initializeTabSwitching() {
+            console.log('Initializing tab switching...');
+
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => {
+                // 移除原有的 onclick 属性，使用新的事件监听器
+                button.removeAttribute('onclick');
+                button.addEventListener('click', function () {
+                    const tabName = this.textContent.includes('个人') ? 'personal-info' : 'org-info';
+                    switchToTab(tabName);
+                });
+            });
+        }
+
+        // 切换标签页的函数
+        function switchToTab(tabName) {
+            console.log('Switching to tab:', tabName);
+
+            // 移除所有标签按钮的 active 类
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // 隐藏所有标签内容
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // 激活对应的标签按钮
+            if (tabName === 'personal-info') {
+                document.querySelector('.tab-button:first-child').classList.add('active');
+            } else if (tabName === 'org-info') {
+                document.querySelector('.tab-button:last-child').classList.add('active');
+            }
+
+            // 显示对应的标签内容
+            const tabContent = document.getElementById(tabName);
+            if (tabContent) {
+                tabContent.classList.add('active');
+            } else {
+                console.error('Tab content not found:', tabName);
+            }
+        }
+
+        // 编辑功能
+        function initializeEditFunctionality() {
+            console.log('Initializing edit functionality...');
+
+            // 个人信息编辑功能
+            const editPersonalBtn = document.getElementById('editPersonalBtn');
+            const savePersonalBtn = document.getElementById('savePersonalBtn');
+            const cancelPersonalBtn = document.getElementById('cancelPersonalBtn');
+            const personalFieldset = document.getElementById('personalFieldset');
+
+            if (editPersonalBtn && savePersonalBtn && cancelPersonalBtn && personalFieldset) {
+                editPersonalBtn.addEventListener('click', function () {
+                    console.log('Edit personal info clicked');
+                    personalFieldset.disabled = false;
+                    editPersonalBtn.style.display = 'none';
+                    savePersonalBtn.style.display = 'inline-block';
+                    cancelPersonalBtn.style.display = 'inline-block';
+
+                    // 显示文件上传控件
+                    document.querySelectorAll('#personal-info .edit-mode-only').forEach(el => {
+                        el.style.display = 'block';
+                    });
+                });
+
+                savePersonalBtn.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    console.log('Save personal info clicked');
+                    personalFieldset.disabled = true;
+                    editPersonalBtn.style.display = 'inline-block';
+                    savePersonalBtn.style.display = 'none';
+                    cancelPersonalBtn.style.display = 'none';
+
+                    // 隐藏文件上传控件
+                    document.querySelectorAll('#personal-info .edit-mode-only').forEach(el => {
+                        el.style.display = 'none';
+                    });
+
+                    alert('个人信息已保存');
+                });
+
+                cancelPersonalBtn.addEventListener('click', function () {
+                    console.log('Cancel personal edit clicked');
+                    personalFieldset.disabled = true;
+                    editPersonalBtn.style.display = 'inline-block';
+                    savePersonalBtn.style.display = 'none';
+                    cancelPersonalBtn.style.display = 'none';
+
+                    // 隐藏文件上传控件
+                    document.querySelectorAll('#personal-info .edit-mode-only').forEach(el => {
+                        el.style.display = 'none';
+                    });
+                });
+            }
+
+            // 机构信息编辑功能
+            const editOrgBtn = document.getElementById('editOrgBtn');
+            const saveOrgBtn = document.getElementById('saveOrgBtn');
+            const cancelOrgBtn = document.getElementById('cancelOrgBtn');
+            const orgFieldset = document.getElementById('orgFieldset');
+            const handlerFieldset = document.getElementById('handlerFieldset');
+            const techFieldset = document.getElementById('techFieldset');
+
+            if (editOrgBtn && saveOrgBtn && cancelOrgBtn && orgFieldset && handlerFieldset && techFieldset) {
+                editOrgBtn.addEventListener('click', function () {
+                    console.log('Edit org info clicked');
+                    orgFieldset.disabled = false;
+                    handlerFieldset.disabled = false;
+                    techFieldset.disabled = false;
+                    editOrgBtn.style.display = 'none';
+                    saveOrgBtn.style.display = 'inline-block';
+                    cancelOrgBtn.style.display = 'inline-block';
+
+                    // 显示文件上传控件
+                    document.querySelectorAll('#org-info .edit-mode-only').forEach(el => {
+                        el.style.display = 'block';
+                    });
+                });
+
+                saveOrgBtn.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    console.log('Save org info clicked');
+                    orgFieldset.disabled = true;
+                    handlerFieldset.disabled = true;
+                    techFieldset.disabled = true;
+                    editOrgBtn.style.display = 'inline-block';
+                    saveOrgBtn.style.display = 'none';
+                    cancelOrgBtn.style.display = 'none';
+
+                    // 隐藏文件上传控件
+                    document.querySelectorAll('#org-info .edit-mode-only').forEach(el => {
+                        el.style.display = 'none';
+                    });
+
+                    alert('机构信息已保存');
+                });
+
+                cancelOrgBtn.addEventListener('click', function () {
+                    console.log('Cancel org edit clicked');
+                    orgFieldset.disabled = true;
+                    handlerFieldset.disabled = true;
+                    techFieldset.disabled = true;
+                    editOrgBtn.style.display = 'inline-block';
+                    saveOrgBtn.style.display = 'none';
+                    cancelOrgBtn.style.display = 'none';
+
+                    // 隐藏文件上传控件
+                    document.querySelectorAll('#org-info .edit-mode-only').forEach(el => {
+                        el.style.display = 'none';
+                    });
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

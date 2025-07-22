@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>确认订单 - 业务下单系统</title>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">业务下单系统</div>
+            <ul class="sidebar-nav">
+                <li><a href="products.html">申请新证书</a></li>
+                <li><a href="list.html">我的订单</a></li>
+                <li><a href="../certificate/list.html">我的证书</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="user-menu">
+                    <button class="user-menu-button" id="userMenuButton">
+                        <span>个人账户: Cheng Xiuwen</span>
+                        <i class="arrow"></i>
+                    </button>
+                    <div class="user-menu-dropdown" id="userMenuDropdown">
+                        <div class="dropdown-header">切换账户</div>
+                        <a href="#" class="dropdown-item active" data-account-type="personal" data-account-name="Cheng Xiuwen">✓ 个人账户: Cheng Xiuwen</a>
+                        <a href="#" class="dropdown-item" data-account-type="org" data-account-name="GDCA Co., Ltd.">机构账户: GDCA Co., Ltd.</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="../account/profile.html" class="dropdown-item">账户信息修改</a>
+                        <a href="../account/login.html" class="dropdown-item">退出登录</a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="page-header">
+                <h1>确认订单</h1>
+            </div>
+
+            <div class="payment-process">
+                <div class="process-steps">
+                    <div class="step active">
+                        <div class="step-number">1</div>
+                        <div class="step-name">确认订单</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-name">支付</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-name">完成</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">订单详情</div>
+                <div class="card-body">
+                    <div id="orderDetails">
+                        <!-- 订单详情将通过JavaScript动态添加 -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">价格汇总</div>
+                <div class="card-body">
+                    <div class="price-summary">
+                        <div class="price-row">
+                            <span class="price-label">商品总计：</span>
+                            <span class="price-value" id="subtotal">HK$0</span>
+                        </div>
+                        <div class="price-row total-row">
+                            <span class="price-label">订单总计：</span>
+                            <span class="price-value total-price" id="orderTotal">HK$0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="products.html" class="btn btn-secondary">返回购物</a>
+                <button id="proceedToPayment" class="btn btn-primary">去支付</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="../assets/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 从sessionStorage获取购物车数据
+            const cartItemsJson = sessionStorage.getItem('cartItems');
+            console.log('读取到的购物车数据:', cartItemsJson);
+            
+            // 声明购物车数据变量
+            let cartItems;
+            
+            // 如果没有购物车数据，显示测试数据
+            if (!cartItemsJson) {
+                console.log('没有找到购物车数据，使用测试数据');
+                // 创建测试数据
+                const testCartItems = [
+                    {
+                        id: 'personal-1234567890',
+                        name: '電子證書（個人） (1年 - HK$50)',
+                        price: 50,
+                        quantity: 1,
+                        options: {
+                            validity: { value: '1', text: '1年 - HK$50' }
+                        }
+                    },
+                    {
+                        id: 'personal-mutual-1234567891',
+                        name: '電子證書（個人）互認版 (2年 - HK$475; 硬件令牌-电子证书档案USB; SafeNet)',
+                        price: 475,
+                        quantity: 1,
+                        options: {
+                            validity: { value: '2', text: '2年 - HK$475' },
+                            storage: { value: 'usb', text: '硬件令牌-电子证书档案USB' },
+                            brand: { value: 'SafeNet', text: 'SafeNet' }
+                        }
+                    },
+                    {
+                        id: 'ssl-dv-example.com-1234567892',
+                        name: 'SSL证书 (DV证书; 域名: example.com; 1年)',
+                        price: 500,
+                        quantity: 1,
+                        options: {
+                            sslType: { value: 'dv', text: 'DV证书' },
+                            domain: { value: 'example.com', text: 'example.com' },
+                            validity: { value: '1', text: '1年' }
+                        }
+                    }
+                ];
+                
+                // 将测试数据存入sessionStorage
+                sessionStorage.setItem('cartItems', JSON.stringify(testCartItems));
+                
+                // 使用测试数据
+                cartItems = testCartItems;
+            } else {
+                cartItems = JSON.parse(cartItemsJson);
+            }
+            
+            const orderDetailsContainer = document.getElementById('orderDetails');
+            const subtotalElement = document.getElementById('subtotal');
+            const orderTotalElement = document.getElementById('orderTotal');
+            let totalPrice = 0;
+
+            // 渲染订单详情
+            cartItems.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                totalPrice += itemTotal;
+
+                // 创建产品详情卡片
+                const productCard = document.createElement('div');
+                productCard.className = 'product-detail-card';
+                
+                // 解析产品基本信息
+                const baseProductName = item.name.split(' (')[0];
+                
+                let detailsHtml = `
+                    <div class="product-header">
+                        <h4>${baseProductName}</h4>
+                        <div class="product-price">HK$${itemTotal.toFixed(0)}</div>
+                    </div>
+                    <div class="product-details">
+                        <div class="detail-row">
+                            <span class="detail-label">数量：</span>
+                            <span class="detail-value">${item.quantity}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">单价：</span>
+                            <span class="detail-value">HK$${item.price.toFixed(0)}</span>
+                        </div>
+                `;
+                
+                // 根据产品选项添加详细信息
+                if (item.options) {
+                    if (item.options.validity) {
+                        detailsHtml += `
+                            <div class="detail-row">
+                                <span class="detail-label">有效期：</span>
+                                <span class="detail-value">${item.options.validity.text}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    if (item.options.storage) {
+                        detailsHtml += `
+                            <div class="detail-row">
+                                <span class="detail-label">存储媒体：</span>
+                                <span class="detail-value">${item.options.storage.text}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    if (item.options.brand) {
+                        detailsHtml += `
+                            <div class="detail-row">
+                                <span class="detail-label">硬件令牌品牌：</span>
+                                <span class="detail-value">${item.options.brand.text}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    if (item.options.sslType) {
+                        detailsHtml += `
+                            <div class="detail-row">
+                                <span class="detail-label">证书类型：</span>
+                                <span class="detail-value">${item.options.sslType.text}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    if (item.options.domain) {
+                        detailsHtml += `
+                            <div class="detail-row">
+                                <span class="detail-label">域名：</span>
+                                <span class="detail-value">${item.options.domain.text}</span>
+                            </div>
+                        `;
+                    }
+                }
+                
+                detailsHtml += `
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn-link remove-item" data-id="${item.id}">删除</button>
+                    </div>
+                `;
+                
+                productCard.innerHTML = detailsHtml;
+                orderDetailsContainer.appendChild(productCard);
+            });
+
+            // 更新价格汇总
+            subtotalElement.textContent = `HK$${totalPrice.toFixed(0)}`;
+            orderTotalElement.textContent = `HK$${totalPrice.toFixed(0)}`;
+            
+            // 添加删除商品事件
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    cartItems = cartItems.filter(item => item.id !== id);
+                    
+                    if (cartItems.length === 0) {
+                        // 如果购物车为空，返回产品页面
+                        alert('购物车已清空，将返回产品页面');
+                        window.location.href = 'products.html';
+                    } else {
+                        // 更新sessionStorage并重新加载页面
+                        sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+                        location.reload();
+                    }
+                });
+            });
+            
+            // 去支付按钮事件
+            const proceedToPaymentBtn = document.getElementById('proceedToPayment');
+            
+            proceedToPaymentBtn.addEventListener('click', function() {
+                if (cartItems.length === 0) {
+                    alert('购物车为空，无法进行支付');
+                    return;
+                }
+                
+                // 创建简化的订单信息
+                const orderInfo = {
+                    items: cartItems,
+                    totalPrice: totalPrice
+                };
+                
+                // 将订单信息存储到sessionStorage
+                sessionStorage.setItem('orderInfo', JSON.stringify(orderInfo));
+                
+                // 跳转到支付页面
+                window.location.href = 'payment.html';
+            });
+        });
+    </script>
+</body>
+</html>

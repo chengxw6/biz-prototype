@@ -1,0 +1,161 @@
+
+业务下单系统 - 前端原型 (Business Ordering System - Front-end Prototype)
+🚀 项目概述 (Project Overview)
+本项目是一个用于演示和验证 业务下单系统 核心流程的低保真前端原型。主要目标是为前端开发人员提供一个清晰、可交互的页面蓝图，明确各个页面的布局、核心功能和用户交互流程，以便于后续的高保真UI设计和正式开发 。
+
+项目结构
+biz-prototype/
+├── 📂 account/               # 账户管理相关页面
+│   ├── login.html
+│   ├── register.html
+│   └── profile.html
+├── 📂 assets/                # 存放所有公共资源
+│   ├── style.css           # 唯一的全局样式文件
+│   └── main.js             # 唯一的全局脚本文件
+├── 📂 certificate/          # 证书管理相关页面
+│   ├── list.html
+│   ├── detail.html
+│   └── edit.html
+├── 📂 orders/                # 订单管理相关页面
+│   ├── products.html
+│   └── list.html
+├── index.html                # 项目首页/仪表盘
+└── README.md                 # 项目说明与规范 (本文件)
+
+为了保持代码的整洁、可维护性，并防止修改相互影响，所有贡献者都必须遵守以下规范。
+
+1. HTML 规范
+统一布局: 所有需要侧边栏和顶部菜单的页面，都必须复用统一的 HTML 结构 (<div class="app-container">, <aside class="sidebar">, <main class="main-content"> 等)。
+
+路径规则: 所有资源链接（CSS, JS）和页面跳转链接 (href) 必须使用根相对路径 (Root-Relative Paths)。
+
+✅ 正确: /assets/style.css, <a href="/orders/list.html">
+
+❌ 错误: ../assets/style.css, <a href="../orders/list.html">
+
+语义化: 尽量使用语义化的 HTML5 标签（如 <header>, <main>, <fieldset>, <legend> 等）。
+
+2. CSS 规范
+单一文件: 所有的 CSS 样式都必须写在 assets/style.css 这一个文件中。严禁在 HTML 文件中使用 <style> 标签或行内 style 属性。
+
+CSS 变量: 颜色、通用间距等值应优先使用 :root 中已定义的 CSS 变量（如 --primary-color, --border-color 等），以保持视觉风格统一。
+
+命名约定: 使用清晰、可读的 class 名称。例如，使用 .card-header 而不是 .ch。
+
+3. JavaScript 规范
+单一文件: 所有的 JavaScript 逻辑都必须写在 assets/main.js 这一个文件中。严禁在 HTML 文件中使用 <script> 标签编写页面逻辑。
+
+模块化初始化: 这是最重要的规则！为了防止页面间的JS代码互相干扰，我们采用“按需初始化”的模式。所有页面专属的逻辑都必须封装在自己的初始化函数中，并在 DOMContentLoaded 事件中根据页面特征进行调用。
+
+标准结构如下：
+
+JavaScript
+
+document.addEventListener("DOMContentLoaded", function() {
+    // 这个函数在每个页面都会运行
+    initializeSharedComponents();
+
+    // 下面的函数只有在当前页面包含特定ID的元素时才会运行
+    if (document.getElementById('productTable')) {
+        initializeProductPage(); // products.html 的专属逻辑
+    }
+    if (document.querySelector('.manage-dropdown')) {
+        initializeCertListPage(); // certificate/list.html 的专属逻辑
+    }
+    // ... 为其他页面添加专属的初始化函数
+});
+
+/**
+ * 处理所有页面共享的组件，如顶部菜单、侧边栏等
+ */
+function initializeSharedComponents() {
+    // ... header and sidebar logic here
+}
+
+/**
+ * 处理产品选择页面的逻辑
+ */
+function initializeProductPage() {
+    // ... logic for products.html only
+}
+
+/**
+ * 处理证书列表页面的逻辑
+ */
+function initializeCertListPage() {
+    // ... logic for certificate/list.html only
+}
+✅ 核心功能范围 (Key Functional Areas)
+本原型主要覆盖以下三大核心模块，所有开发工作都应围绕这些模块的需求展开：
+
+
+账户管理 (Account Management): 包括用户注册、登录、账户信息查看与编辑 。
+
+
+订单与支付 (Order & Payment): 包括产品选择、购物车、订单提交与状态查询 。
+
+
+证书管理 (Certificate Management): 包括证书列表、详情查看、以及撤销、续期等操作 。
+
+✅ 具体需求摘要 (Specific Requirements Summary)
+本节概述了原型需要实现的核心功能，作为开发的快速参考指南。
+
+1. 账户管理 (Account Management)
+注册: 系统需要支持两种账户类型的注册：
+
+
+个人账户：用户通过邮箱和密码直接注册，注册后状态为“待认证” 。
+
+
+
+机构账户：必须由一个已完成身份认证的个人账户来创建，作为该机构的授权代表 。
+
+
+
+登录: 用户需使用“注册邮箱 + 密码 + 界面随机码”的形式登录系统 。
+
+
+信息管理: 用户登录后，应能查看和编辑其个人账户及关联的机构账户信息 。
+
+
+密码找回: 需提供“忘记密码”功能，允许用户通过注册邮箱接收验证码来重设新密码 。
+
+2. 订单管理 (Order Management)
+
+产品筛选: “申请新证书”页面展示的产品列表必须根据当前操作的账户类型动态变化 ：
+
+
+个人账户可见：電子證書（個人）、電子證書（個人）互認版、電子證書（伺服器）DV SSL 。
+
+
+机构账户可见：電子證書（機構）、電子證書（機構）互認版、電子證書（保密）及所有服务器证书类型 。
+
+
+下单流程: 核心流程为：用户将产品加入购物车，然后“提交订单”，并先完成付款 。
+
+
+支付: 订单提交后，页面跳转至支付页，提供线上支付选项（如FPS、信用卡） 。支付成功后，订单状态更新为“已支付” 。
+
+
+订单查询: 用户可以在“我的订单”页面查看历史订单列表，列表应包含订单号、下单时间、金额和状态等信息 。用户还应能点击进入订单详情页 。
+
+
+3. 证书管理 (Certificate Management)
+
+申请表填写: 订单支付成功后，系统会为订单内的每个产品生成独立的证书申请编号，此时用户才能开始为每个申请逐条填写详细的申请表单和上传材料 。
+
+
+证书列表: 用户可以在“我的证书”页面查看所有证书申请的列表，列表应支持按状态、有效期等条件检索，并展示申请编号、证书类型、状态等关键信息 。
+
+
+
+证书详情: 用户可以点击查看任一证书申请的完整详情。此页面应以只读形式展示所有已提交的申请信息，并提供操作日志记录 。
+
+
+核心操作: 对于一个“已颁发”状态的证书，详情页面必须提供以下核心操作按钮 ：
+
+下载证书
+
+申请续期
+
+申请撤销

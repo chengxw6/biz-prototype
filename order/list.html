@@ -21,13 +21,13 @@
             <header class="header">
                 <div class="user-menu">
                     <button class="user-menu-button" id="userMenuButton">
-                        <span>个人账户: Cheng Xiuwen</span>
+                        <span>个人账户: 张三</span>
                         <i class="arrow"></i>
                     </button>
                     <div class="user-menu-dropdown" id="userMenuDropdown">
                         <div class="dropdown-header">切换账户</div>
-                        <a href="#" class="dropdown-item">✓ 个人账户: Cheng Xiuwen</a>
-                        <a href="#" class="dropdown-item">机构账户: GDCA Co., Ltd.</a>
+                        <a href="#" class="dropdown-item">✓ 个人账户: 张三</a>
+                        <a href="#" class="dropdown-item">机构账户: 示例科技有限公司</a>
                         <div class="dropdown-divider"></div>
                         <a href="/account/profile.html" class="dropdown-item">账户信息修改</a>
                         <a href="/account/login.html" class="dropdown-item">退出登录</a>
@@ -121,6 +121,7 @@
         const userMenuDropdown = document.getElementById('userMenuDropdown');
         const dropdownItems = userMenuDropdown.querySelectorAll('.dropdown-item');
 
+        // 切换账户逻辑
         dropdownItems.forEach(item => {
             item.addEventListener('click', (event) => {
                 event.preventDefault();
@@ -136,6 +137,20 @@
                 // 更新勾选状态
                 dropdownItems.forEach(i => i.textContent = i.textContent.replace('✓ ', ''));
                 item.textContent = `✓ ${item.textContent}`;
+            });
+        });
+
+        // "更多"按钮逻辑
+        const toggleButtons = document.querySelectorAll('.toggle-details');
+        toggleButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                const targetId = button.getAttribute('data-target');
+                const detailsElement = document.getElementById(targetId);
+
+                if (detailsElement) {
+                    detailsElement.classList.toggle('hidden');
+                }
             });
         });
     });

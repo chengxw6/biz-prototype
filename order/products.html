@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>申请新证书 - 业务下单系统</title>
     <link rel="stylesheet" href="../assets/style.css">
 </head>
+
 <body>
     <div class="app-container">
         <aside class="sidebar">
@@ -19,15 +21,26 @@
 
         <main class="main-content">
             <header class="header">
+                <div class="cart-icon-container">
+                    <button class="cart-icon" id="cartToggleBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </button>
+                </div>
                 <div class="user-menu">
                     <button class="user-menu-button" id="userMenuButton">
-                        <span>个人账户: Cheng Xiuwen</span>
+                        <span>个人账户: 张三</span>
                         <i class="arrow"></i>
                     </button>
                     <div class="user-menu-dropdown" id="userMenuDropdown">
                         <div class="dropdown-header">切换账户</div>
-                        <a href="#" class="dropdown-item">✓ 个人账户: Cheng Xiuwen</a>
-                        <a href="#" class="dropdown-item">机构账户: GDCA Co., Ltd.</a>
+                        <a href="#" class="dropdown-item active" data-account-type="personal" data-account-name="张三">✓ 个人账户: 张三</a>
+                        <a href="#" class="dropdown-item" data-account-type="org" data-account-name="示例科技有限公司">机构账户: 示例科技有限公司</a>
                         <div class="dropdown-divider"></div>
                         <a href="../account/profile.html" class="dropdown-item">账户信息修改</a>
                         <a href="../account/login.html" class="dropdown-item">退出登录</a>
@@ -41,123 +54,444 @@
 
             <div class="product-grid" id="productGrid">
                 <!-- 電子證書（個人） -->
-                <div class="product-card" data-account-type="personal,org">
+                <div class="product-card modern-card" data-account-type="personal,org" data-product-id="personal"
+                    data-product-name="電子證書（個人）" data-product-price="50">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="m22 2-5 10-3-3-3 3-5-10"></path>
+                        </svg>
+                    </div>
                     <h3>電子證書（個人）</h3>
-                    <div class="card-body"><p class="price">HK$50/年</p></div>
-                    <div class="card-footer">
-                        <a href="../certificate/certificate-detail.html?product=電子證書（個人）" class="btn btn-primary btn-sm">申请</a>
-                    </div>
-                </div>
-                <!-- 電子證書（個人）互認版 -->
-                <div class="product-card" data-account-type="personal,org">
-                    <h3>電子證書（個人）互認版</h3>
-                    <div class="card-body"><p class="price">HK$250/年</p></div>
-                    <div class="card-footer">
-                        <a href="../certificate/certificate-detail.html?product=電子證書（個人）互認版" class="btn btn-primary btn-sm">申请</a>
-                    </div>
-                </div>
-                <!-- 電子證書（機構） -->
-                <div class="product-card" data-account-type="org">
-                    <h3>電子證書（機構）</h3>
-                    <div class="card-body"><p class="price">HK$500/年</p></div>
-                    <div class="card-footer">
-                        <a href="../certificate/certificate-detail.html?product=電子證書（機構）" class="btn btn-primary btn-sm">申请</a>
-                    </div>
-                </div>
-                <!-- 電子證書（機構）互認版 -->
-                <div class="product-card" data-account-type="org">
-                    <h3>電子證書（機構）互認版</h3>
-                    <div class="card-body"><p class="price">HK$1,200/年</p></div>
-                    <div class="card-footer">
-                        <a href="../certificate/certificate-detail.html?product=電子證書（機構）互認版" class="btn btn-primary btn-sm">申请</a>
-                    </div>
-                </div>
-                <!-- 電子證書（保密） -->
-                <div class="product-card" data-account-type="org">
-                    <h3>電子證書（保密）</h3>
-                    <div class="card-body"><p class="price">HK$200/年</p></div>
-                    <div class="card-footer">
-                        <a href="../certificate/certificate-detail.html?product=電子證書（保密）" class="btn btn-primary btn-sm">申请</a>
-                    </div>
-                </div>
-                <!-- 電子證書（伺服器） -->
-                <div class="product-card" data-account-type="personal,org">
-                    <h3>電子證書（伺服器）</h3>
                     <div class="card-body">
-                        <ul>
-                            <li data-account-type="org">SSL OV 證書 (HK$1,200/年)</li>
-                            <li data-account-type="org">SSL OV 證書（多域版） (HK$1,500/年)</li>
-                            <li data-account-type="org">SSL OV 證書（通配符版） (HK$1,800/年)</li>
-                            <li data-account-type="org">SSL EV 證書 (HK$2,000/年)</li>
-                            <li data-account-type="org">SSL EV 證書（多域版） (HK$2,500/年)</li>
-                            <li data-account-type="personal,org">SSL DV 證書 (HK$500/年)</li>
-                            <li data-account-type="personal,org">SSL DV 證書（多域版） (HK$800/年)</li>
-                            <li data-account-type="personal,org">SSL DV 證書（通配符版） (HK$1,000/年)</li>
+                        <p class="price-from">起价</p>
+                        <p class="price">HK$50<span class="price-unit">/年</span></p>
+                        <p class="description">适用于个人身份认证和数字签名</p>
+                        <ul class="features">
+                            <li>✓ 个人身份验证</li>
+                            <li>✓ 数字签名</li>
+                            <li>✓ 1-3年有效期可选</li>
                         </ul>
                     </div>
                     <div class="card-footer">
-                        <a href="../certificate/certificate-detail.html?product=電子證書（伺服器）" class="btn btn-primary btn-sm">申请</a>
+                        <button class="btn btn-primary btn-block add-to-cart-btn">选择配置</button>
+                    </div>
+                </div>
+
+                <!-- 電子證書（個人）互認版 -->
+                <div class="product-card modern-card" data-account-type="personal,org" data-product-id="personal-mutual"
+                    data-product-name="電子證書（個人）互認版" data-product-price="250">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M22 11l-3-3 3-3"></path>
+                            <path d="M19 8h-7"></path>
+                        </svg>
+                    </div>
+                    <h3>電子證書（個人）互認版</h3>
+                    <div class="card-body">
+                        <p class="price-from">起价</p>
+                        <p class="price">HK$250<span class="price-unit">/年</span></p>
+                        <p class="description">支持跨境互认的个人数字证书</p>
+                        <ul class="features">
+                            <li>✓ 跨境互认</li>
+                            <li>✓ 硬件令牌存储</li>
+                            <li>✓ 多品牌令牌支持</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-block add-to-cart-btn">选择配置</button>
+                    </div>
+                </div>
+
+                <!-- 電子證書（機構） -->
+                <div class="product-card modern-card" data-account-type="org" data-product-id="org" 
+                    data-product-name="電子證書（機構）" data-product-price="500">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 21h18"></path>
+                            <path d="M5 21V7l8-4v18"></path>
+                            <path d="M19 21V11l-6-4"></path>
+                        </svg>
+                    </div>
+                    <h3>電子證書（機構）</h3>
+                    <div class="card-body">
+                        <p class="price-from">起价</p>
+                        <p class="price">HK$500<span class="price-unit">/年</span></p>
+                        <p class="description">适用于企业和机构的数字证书</p>
+                        <ul class="features">
+                            <li>✓ 机构身份验证</li>
+                            <li>✓ 企业数字签名</li>
+                            <li>✓ 法律效力保障</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-block add-to-cart-btn">选择配置</button>
+                    </div>
+                </div>
+
+                <!-- 電子證書（機構）互認版 -->
+                <div class="product-card modern-card" data-account-type="org" data-product-id="org-mutual"
+                    data-product-name="電子證書（機構）互認版" data-product-price="1200">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 21h18"></path>
+                            <path d="M5 21V7l8-4v18"></path>
+                            <path d="M19 21V11l-6-4"></path>
+                            <path d="M22 11l-3-3 3-3"></path>
+                        </svg>
+                    </div>
+                    <h3>電子證書（機構）互認版</h3>
+                    <div class="card-body">
+                        <p class="price-from">起价</p>
+                        <p class="price">HK$1,200<span class="price-unit">/年</span></p>
+                        <p class="description">支持跨境互认的机构数字证书</p>
+                        <ul class="features">
+                            <li>✓ 跨境互认</li>
+                            <li>✓ 企业级安全</li>
+                            <li>✓ 国际标准兼容</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-block add-to-cart-btn">选择配置</button>
+                    </div>
+                </div>
+
+                <!-- 電子證書（保密） -->
+                <div class="product-card modern-card" data-account-type="org" data-product-id="confidential"
+                    data-product-name="電子證書（保密）" data-product-price="200">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                            <circle cx="12" cy="16" r="1"></circle>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                    <h3>電子證書（保密）</h3>
+                    <div class="card-body">
+                        <p class="price-from">起价</p>
+                        <p class="price">HK$200<span class="price-unit">/年</span></p>
+                        <p class="description">高安全级别的保密数字证书</p>
+                        <ul class="features">
+                            <li>✓ 高级加密</li>
+                            <li>✓ 保密级别认证</li>
+                            <li>✓ 专用安全模块</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-block add-to-cart-btn">选择配置</button>
+                    </div>
+                </div>
+
+                <!-- SSL证书产品 -->
+                <div class="product-card modern-card ssl-card" data-account-type="personal,org" data-product-id="ssl"
+                    data-product-name="SSL证书" data-product-price="500">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                    </div>
+                    <h3>SSL证书</h3>
+                    <div class="card-body">
+                        <p class="price-from">起价</p>
+                        <p class="price">HK$500<span class="price-unit">/年</span></p>
+                        <p class="description">网站HTTPS加密和身份验证</p>
+                        <ul class="features">
+                            <li>✓ DV/OV/EV多种验证级别</li>
+                            <li>✓ 单域名/多域名/通配符</li>
+                            <li>✓ 99.9%浏览器兼容</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-block add-to-cart-btn">选择配置</button>
                     </div>
                 </div>
             </div>
         </main>
+
+        <!-- 购物车侧边栏 -->
+        <aside class="cart-sidebar" id="cartSidebar">
+            <div class="cart-header">
+                <h3>我的购物车</h3>
+                <button class="cart-close" id="cartCloseBtn">×</button>
+            </div>
+            <div class="cart-body" id="cartItems">
+                <!-- 购物车为空状态 -->
+                <div class="cart-empty" id="cartEmpty">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <p>您的购物车是空的</p>
+                </div>
+                <!-- 购物车商品列表将由JS动态生成 -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>商品合计：</span>
+                    <span class="total-price" id="cartTotal">HK$0</span>
+                </div>
+                <button class="btn btn-primary btn-block" id="checkoutBtn" disabled>去结算</button>
+            </div>
+        </aside>
+
+        <!-- 产品配置模态框 -->
+        <div class="modal-overlay" id="configModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">配置产品</h3>
+                    <button class="modal-close" id="modalCloseBtn">×</button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- 动态内容将在这里生成 -->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" id="modalCancelBtn">取消</button>
+                    <button class="btn btn-primary" id="modalConfirmBtn">加入购物车</button>
+                </div>
+            </div>
+        </div>
     </div>
+
     <script src="../assets/main.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const userMenuButton = document.getElementById('userMenuButton');
-            const userMenuDropdown = document.getElementById('userMenuDropdown');
-            const dropdownItems = userMenuDropdown.querySelectorAll('.dropdown-item');
-            const productGrid = document.getElementById('productGrid');
-
-            // 默认账户类型为个人账户
-            const defaultAccountType = 'personal';
-
-            // 根据账户类型过滤产品
-            function filterProducts(accountType) {
-                const productCards = productGrid.querySelectorAll('.product-card');
-                productCards.forEach(card => {
-                    const cardAccountType = card.getAttribute('data-account-type');
-                    if (cardAccountType.includes(accountType) || cardAccountType.includes('personal,org')) {
-                        card.style.display = 'block';
-
-                        // 过滤伺服器子类型
-                        const subItems = card.querySelectorAll('[data-account-type]');
-                        subItems.forEach(subItem => {
-                            const subItemAccountType = subItem.getAttribute('data-account-type');
-                            subItem.style.display = subItemAccountType.includes(accountType) ? 'list-item' : 'none';
-                        });
+    // 产品页面功能确保脚本
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Products page - ensuring functionality works');
+        
+        // 延迟执行以确保 main.js 已完全加载
+        setTimeout(function() {
+            // 1. 确保账户切换功能工作
+            ensureAccountSwitching();
+            
+            // 2. 确保产品配置按钮工作
+            ensureProductConfiguration();
+            
+            // 3. 确保购物车功能工作
+            ensureCartFunctionality();
+            
+        }, 100);
+    });
+    
+    function ensureAccountSwitching() {
+        const userMenuButton = document.getElementById('userMenuButton');
+        const userMenuDropdown = document.getElementById('userMenuDropdown');
+        
+        if (!userMenuButton || !userMenuDropdown) {
+            console.error('User menu elements not found');
+            return;
+        }
+        
+        // 检查是否已经有点击事件
+        let hasClickEvent = false;
+        try {
+            userMenuButton.click();
+            if (userMenuDropdown.classList.contains('show')) {
+                hasClickEvent = true;
+                userMenuDropdown.classList.remove('show');
+            }
+        } catch (e) {
+            // 忽略错误
+        }
+        
+        if (!hasClickEvent) {
+            console.log('Adding account switching functionality...');
+            
+            // 添加用户菜单点击事件
+            userMenuButton.addEventListener('click', function(event) {
+                event.stopPropagation();
+                userMenuDropdown.classList.toggle('show');
+            });
+            
+            // 添加外部点击关闭事件
+            document.addEventListener('click', function(event) {
+                if (userMenuDropdown.classList.contains('show') && 
+                    !event.target.closest('.user-menu')) {
+                    userMenuDropdown.classList.remove('show');
+                }
+            });
+            
+            // 添加账户切换事件
+            const dropdownItems = userMenuDropdown.querySelectorAll('.dropdown-item[data-account-type]');
+            dropdownItems.forEach(item => {
+                item.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    
+                    const accountType = this.dataset.accountType;
+                    const accountName = this.dataset.accountName;
+                    
+                    // 更新右上角账户信息
+                    const accountTypeText = accountType === 'personal' ? '个人账户' : '机构账户';
+                    userMenuButton.querySelector('span').textContent = `${accountTypeText}: ${accountName}`;
+                    
+                    // 更新勾选状态
+                    dropdownItems.forEach(i => {
+                        i.classList.remove('active');
+                        if (i.textContent.includes('✓')) {
+                            i.textContent = i.textContent.replace('✓ ', '');
+                        }
+                    });
+                    this.classList.add('active');
+                    if (!this.textContent.includes('✓')) {
+                        this.textContent = `✓ ${this.textContent}`;
+                    }
+                    
+                    // 过滤产品
+                    filterProductsByAccount(accountType);
+                    
+                    // 关闭下拉菜单
+                    userMenuDropdown.classList.remove('show');
+                });
+            });
+        }
+    }
+    
+    function ensureProductConfiguration() {
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+        console.log('Found add to cart buttons:', addToCartButtons.length);
+        
+        addToCartButtons.forEach((button, index) => {
+            // 检查按钮是否已经有事件监听器
+            if (!button.hasAttribute('data-event-added')) {
+                button.setAttribute('data-event-added', 'true');
+                
+                button.addEventListener('click', function() {
+                    console.log('Product configuration button clicked');
+                    
+                    const productCard = this.closest('.product-card');
+                    const productId = productCard.dataset.productId;
+                    const productName = productCard.dataset.productName;
+                    const productPrice = parseFloat(productCard.dataset.productPrice);
+                    
+                    // 尝试调用 main.js 中的函数
+                    if (typeof openProductModal === 'function') {
+                        openProductModal(productId, productName, productPrice);
                     } else {
-                        card.style.display = 'none';
+                        // 如果函数不存在，手动打开模态框
+                        openProductModalManually(productId, productName, productPrice);
                     }
                 });
             }
-
-            // 页面加载时默认过滤产品
-            filterProducts(defaultAccountType);
-
-            // 切换账户逻辑
-            dropdownItems.forEach(item => {
-                item.addEventListener('click', (event) => {
-                    event.preventDefault();
-
-                    // 获取选中的账户信息
-                    const selectedAccount = item.textContent.trim();
-                    const accountType = selectedAccount.includes('个人账户') ? 'personal' : 'org';
-                    const accountName = selectedAccount.split(': ')[1];
-
-                    // 更新右上角账户信息
-                    userMenuButton.querySelector('span').textContent = `${accountType === 'personal' ? '个人账户' : '机构账户'}: ${accountName}`;
-
-                    // 更新勾选状态
-                    dropdownItems.forEach(i => i.textContent = i.textContent.replace('✓ ', ''));
-                    item.textContent = `✓ ${item.textContent}`;
-
-                    // 根据账户类型过滤产品
-                    filterProducts(accountType);
-                });
-            });
         });
+    }
+    
+    function ensureCartFunctionality() {
+        const cartToggleBtn = document.getElementById('cartToggleBtn');
+        const cartSidebar = document.getElementById('cartSidebar');
+        
+        if (cartToggleBtn && cartSidebar) {
+            // 检查购物车按钮是否有事件
+            if (!cartToggleBtn.hasAttribute('data-cart-event-added')) {
+                cartToggleBtn.setAttribute('data-cart-event-added', 'true');
+                
+                cartToggleBtn.addEventListener('click', function() {
+                    cartSidebar.classList.toggle('active');
+                });
+            }
+        }
+    }
+    
+    function filterProductsByAccount(accountType) {
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            const cardAccountType = card.getAttribute('data-account-type');
+            if (cardAccountType.includes(accountType) || cardAccountType.includes('personal,org')) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    
+    function openProductModalManually(productId, productName, productPrice) {
+        const modal = document.getElementById('configModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        
+        if (!modal || !modalTitle || !modalBody) {
+            console.error('Modal elements not found');
+            return;
+        }
+        
+        // 设置模态框标题
+        modalTitle.textContent = `配置 ${productName}`;
+        
+        // 生成基本配置内容
+        let configContent = `
+            <div class="config-section">
+                <h4>基本配置</h4>
+                <div class="config-option">
+                    <label for="validity">有效期</label>
+                    <select id="validity">
+                        <option value="1">1年 - HK$${productPrice}</option>
+                        <option value="2">2年 - HK$${Math.round(productPrice * 1.9)}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="price-preview">
+                <h4>价格预览</h4>
+                <div class="total-price" id="pricePreview">HK$${productPrice}</div>
+            </div>
+        `;
+        
+        modalBody.innerHTML = configContent;
+        
+        // 显示模态框
+        modal.classList.add('active');
+        
+        // 添加价格更新事件
+        const validitySelect = document.getElementById('validity');
+        const pricePreview = document.getElementById('pricePreview');
+        
+        if (validitySelect && pricePreview) {
+            validitySelect.addEventListener('change', function() {
+                const multiplier = this.value === '2' ? 1.9 : 1;
+                const newPrice = Math.round(productPrice * multiplier);
+                pricePreview.textContent = `HK$${newPrice}`;
+            });
+        }
+        
+        // 添加模态框关闭事件
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        const modalCancelBtn = document.getElementById('modalCancelBtn');
+        const modalConfirmBtn = document.getElementById('modalConfirmBtn');
+        
+        if (modalCloseBtn) {
+            modalCloseBtn.onclick = function() {
+                modal.classList.remove('active');
+            };
+        }
+        
+        if (modalCancelBtn) {
+            modalCancelBtn.onclick = function() {
+                modal.classList.remove('active');
+            };
+        }
+        
+        if (modalConfirmBtn) {
+            modalConfirmBtn.onclick = function() {
+                const validity = document.getElementById('validity').value;
+                const finalPrice = validity === '2' ? Math.round(productPrice * 1.9) : productPrice;
+                const validityText = validity === '2' ? '2年' : '1年';
+                
+                alert(`已添加到购物车：${productName} (${validityText}) - HK$${finalPrice}`);
+                modal.classList.remove('active');
+            };
+        }
+        
+        // 点击模态框外部关闭
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                modal.classList.remove('active');
+            }
+        };
+    }
     </script>
 </body>
+
 </html>
