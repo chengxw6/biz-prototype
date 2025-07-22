@@ -159,30 +159,67 @@
         </main>
     </div>
     <script src="/assets/main.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const userMenuButton = document.getElementById('userMenuButton');
-        const userMenuDropdown = document.getElementById('userMenuDropdown');
-        const dropdownItems = userMenuDropdown.querySelectorAll('.dropdown-item');
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. 通用顶部用户菜单逻辑 ---
+    const userMenuButton = document.getElementById('userMenuButton');
+    const userMenuDropdown = document.getElementById('userMenuDropdown');
+    if (userMenuButton && userMenuDropdown) {
+        userMenuButton.addEventListener('click', (event) => {
+            event.stopPropagation(); // 防止点击事件冒泡到document
+            userMenuDropdown.classList.toggle('show');
+        });
 
-        dropdownItems.forEach(item => {
-            item.addEventListener('click', (event) => {
-                event.preventDefault();
+        // 点击页面其他地方关闭菜单
+        document.addEventListener('click', (event) => {
+            if (!userMenuButton.contains(event.target)) {
+                userMenuDropdown.classList.remove('show');
+            }
+        });
+    }
 
-                // 获取选中的账户信息
-                const selectedAccount = item.textContent.trim();
-                const accountType = selectedAccount.includes('个人账户') ? '个人账户' : '机构账户';
-                const accountName = selectedAccount.split(': ')[1];
-
-                // 更新右上角账户信息
-                userMenuButton.querySelector('span').textContent = `${accountType}: ${accountName}`;
-
-                // 更新勾选状态
-                dropdownItems.forEach(i => i.textContent = i.textContent.replace('✓ ', ''));
-                item.textContent = `✓ ${item.textContent}`;
-            });
+    // --- 2. “我的订单”页面的“更多”详情展开/收起逻辑 ---
+    const toggleDetailsButtons = document.querySelectorAll('.toggle-details');
+    toggleDetailsButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.dataset.target;
+            const detailsElement = document.getElementById(targetId);
+            if (detailsElement) {
+                const isHidden = detailsElement.classList.toggle('hidden');
+                button.textContent = isHidden ? '更多' : '收起';
+            }
         });
     });
+
+    // --- 3. 表格内所有下拉菜单的通用逻辑 (适用于“查看详情”和“管理”按钮) ---
+    const allDropdownToggles = document.querySelectorAll('.dropdown-toggle, .manage-btn');
+    allDropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', (event) => {
+            event.stopPropagation();
+            // 先关闭所有其他已打开的菜单
+            document.querySelectorAll('.dropdown-menu, .manage-menu').forEach(menu => {
+                // 如果不是当前点击的这个菜单，就关闭它
+                if (!toggle.nextElementSibling.isSameNode(menu)) {
+                    menu.classList.remove('show');
+                }
+            });
+            // 切换当前点击的菜单
+            const menu = toggle.nextElementSibling;
+            if (menu) {
+                menu.classList.toggle('show');
+            }
+        });
+    });
+
+    // 点击页面其他地方，关闭所有表格内的下拉菜单
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest('.dropdown, .manage-dropdown')) {
+            document.querySelectorAll('.dropdown-menu, .manage-menu').forEach(menu => {
+                menu.classList.remove('show');
+            });
+        }
+    });
+});
 </script>
 </body>
 </html>
